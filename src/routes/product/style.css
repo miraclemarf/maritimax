@@ -1,0 +1,20 @@
+
+.bgblue{
+	background-color: #0577cb !important;
+	padding:2em 0 3.3em !important;
+}
+.left{
+    float: left;
+    width: 40%;
+}
+.left h5{
+    color: #535353;
+    font-weight: 400;
+}
+.right{
+    float: right;
+    width: calc(100% - 40%);
+}
+.right h5{
+    color: #535353;    
+}

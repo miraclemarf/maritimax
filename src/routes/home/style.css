@@ -1,0 +1,31 @@
+.home {
+	min-height: 100%;
+	width: 100%;
+}
+.bgblue{
+	background-color: #0577cb !important;
+	padding:2em 0 3.3em !important;
+}
+.bgsegment{
+	min-height: 580px;
+	background-image: url('/assets/images/37240393_xl.jpg') !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	padding-top:120px !important;
+	position: relative;
+}
+.bgsegment:after{
+	background-color: rgba(0,0,0,0.2);
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.bgsegment > div{
+	z-index: 10;
+	position: relative;
+}

@@ -1,0 +1,14 @@
+.search{
+    background-color: #F4F4F4;
+	min-height: 100%;
+    width: 100%;
+    padding-top: 5.5em;
+}
+.bgblue{
+	background-color: #0577cb !important;
+	padding:2em 0 3.3em !important;
+}
+.filter{
+    padding-left: 6%;
+    padding-right: 6%;
+}

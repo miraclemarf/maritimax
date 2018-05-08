@@ -1,0 +1,13 @@
+.bcstyle{
+    background-color: #0066B1 !important;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16) !important;
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16) !important;
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16) !important;
+    padding-top: 6px !important;
+    padding-bottom: 8px !important;
+}
+.bcstyle a,
+.bcstyle > div > div > div{
+    color: white !important;
+    font-weight: 400 !important;
+}

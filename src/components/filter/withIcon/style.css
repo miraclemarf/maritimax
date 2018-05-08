@@ -1,0 +1,32 @@
+.mainTypeBtn{
+	width: 100%;
+	height: 130px;
+}
+.mainTypeBtn:focus,
+.mainTypeBtn:hover{
+	background-color:#0577CB !important;
+}
+.mainTypeBtn .label{
+	background: none !important;
+	color:#fff !important;
+	border:none !important;
+	text-transform: uppercase;
+	margin: 0;
+	padding:0;
+}
+.hidden{display: none !important;}
+.lblPlain{
+	background: none !important;
+	color:#767676 !important;
+	border:none !important;
+	margin: 0;
+	padding:0;
+}
+.inputNoBorder input{
+	border: none !important;
+}
+.inputNoBorder button{
+	background-color: #0577CB !important;
+	color: #fff !important;
+	border-radius: 4px !important;
+}
