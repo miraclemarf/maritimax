@@ -3,7 +3,7 @@ export const FETCH_NEWS = 'fetch_news';
 export const FETCH_MORENEWS = 'fetch_morenews';
 export const FETCH_PRODUCTS = 'fetch_products';
 export const SEARCH_PRODUCTS = 'search_products';
-const BASE_API = 'http://localhost:3001';
+const BASE_API = 'http://127.0.0.1:3001';
 const PROD_API = 'http://siapayangnanya.com/api'
 
 export function fetch_news() {
