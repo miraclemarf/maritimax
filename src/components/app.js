@@ -32,7 +32,9 @@ export default class App extends Component {
    */
   handleRoute = e => {
     this.currentUrl = e.url;
-    window.scrollTo(0, 0);
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
   };
 
   render() {
