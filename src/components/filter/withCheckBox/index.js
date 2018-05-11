@@ -4,10 +4,6 @@ import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Chec
 
 
 export default class FilterWithCheckBox extends Component {
-    state = {}
-    handleChange = (e, { value }) => this.setState({
-        value
-    });
     render() {
         const { value } = this.state
         const options = [
@@ -21,7 +17,7 @@ export default class FilterWithCheckBox extends Component {
                     <div style={{ 'position': 'relative' }}>
                         <Form.Group className={style.chkbox} style={{ 'position': 'absolute', 'right': '110px', 'z-index': '100' }}>
                             <Label className={style.noLbl} content="Buy" />
-                            <Checkbox toggle />
+                            <Checkbox toggle checked={this.props.passData === "2" ? true : false} />
                             <Label className={style.noLbl} content="Charter" />
                         </Form.Group>
                         <Form.Group>

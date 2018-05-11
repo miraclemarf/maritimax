@@ -4,12 +4,33 @@ import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Segm
 
 
 export default class FilterWithIcon extends Component {
-  state = {}
-  handleChange = (e, { value }) => this.setState({
-    value
-  });
+  constructor(props) {
+    super(props);
+    this.toggleClass = this.toggleClass.bind(this);
+    this.state = { active: false, value: '' };
+  };
+  //state = {};
+  toggleClass(e) {
+    const currentState = this.state.active;
+    const val = e.currentTarget.getAttribute("value");
+    //console.log(e.currentTarget.getAttribute("value"));
+
+    this.setState({ active: !currentState, value: val });
+
+  };
+  handleChange() {
+    alert()
+  }
+  /* handleChange(e, { value }) {
+    console.log(value);
+    this.setState({ value });
+  } */
+  state = {};
+  handleChange = (e, { value }) => this.setState({ value });
+
   render() {
-    const { value } = this.state
+    const { value } = this.state;
+
     return (
       <Form action="/search">
         <Container>
@@ -17,29 +38,29 @@ export default class FilterWithIcon extends Component {
             <Grid.Row centered>
               <Grid.Column mobile={16} tablet={4} computer={2}>
                 <Form.Field >
-                  <Button as="a" className={style.mainTypeBtn} inverted value='1' onClick={this.handleChange}>
+                  <Button as="a" inverted value='1' style={this.state.value === '1' ? { 'background-color': '#0577CB' } : null} className={style.mainTypeBtn} onClick={this.toggleClass} >
                     <Image style={{
                       'padding-bottom': '20px'
                     }} centered src='/assets/images/buy.png' />
                     <Label className={style.label} basic content='Buy' size={'large'} />
                   </Button>
-                  <Radio className={style.hidden} label='Buy' value='1' checked={value === '1'} onChange={this.handleChange} />
+                  <Radio name='type' className={style.hidden} label='Buy' value='1' checked={value === '1'} onChange={this.handleChange} />
                 </Form.Field>
               </Grid.Column>
               <Grid.Column mobile={16} tablet={4} computer={2}>
                 <Form.Field>
-                  <Button as="a" className={style.mainTypeBtn} inverted value='2' onClick={this.handleChange}>
+                  <Button as="a" className={style.mainTypeBtn} inverted value='2' style={this.state.value === '2' ? { 'background-color': '#0577CB' } : null} onClick={this.toggleClass}>
                     <Image style={{
                       'padding-bottom': '12px'
                     }} centered src='/assets/images/charter.png' />
                     <Label className={style.label} basic content='Charter' size={'large'} />
                   </Button>
-                  <Radio className={style.hidden} label='Charter' value='2' checked={value === '2'} onChange={this.handleChange} />
+                  <Radio name='type' className={style.hidden} label='Charter' value='2' checked={value === '2'} onChange={this.handleChange} />
                 </Form.Field>
               </Grid.Column>
               <Grid.Column mobile={16} tablet={4} computer={2}>
                 <Form.Field>
-                  <Button as="a" className={style.mainTypeBtn} inverted value='3' onClick={this.handleChange}>
+                  <Button as="a" className={style.mainTypeBtn} inverted value='3' style={this.state.value === '3' ? { 'background-color': '#0577CB' } : null} onClick={this.toggleClass}>
                     <Image style={{
                       'padding-bottom': '12px'
                     }} centered src='/assets/images/request.png' />

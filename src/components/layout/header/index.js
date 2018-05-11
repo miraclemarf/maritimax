@@ -15,11 +15,11 @@ export default class Header extends Component {
           </Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item> <Link activeClassName={style.active} href="/">Home</Link></Menu.Item>
-            <Menu.Item>   <Link activeClassName={style.active} href="/search">Penyewaan</Link></Menu.Item>
-            <Menu.Item>   <Link activeClassName={style.active} href="/search">Jual Beli</Link></Menu.Item>
+            <Menu.Item>   <Link activeClassName={style.active} href="/search?type=2">Penyewaan</Link></Menu.Item>
+            <Menu.Item>   <Link activeClassName={style.active} href="/search?type=1">Jual Beli</Link></Menu.Item>
             <Menu.Item>   <Link activeClassName={style.active} href="/news">News</Link></Menu.Item>
             <Menu.Item>   <Link activeClassName={style.active} href="/about">About Us</Link></Menu.Item>
-            <Menu.Item>   <Link activeClassName={style.active} href="/">Contact Us</Link></Menu.Item>
+            <Menu.Item>   <Link activeClassName={style.active} href="/contact">Contact Us</Link></Menu.Item>
             <Menu.Item>
               <Button className={style.btn}>Log-in</Button>
             </Menu.Item>

@@ -1,4 +1,5 @@
 import { h, Component } from "preact";
+
 import { connect } from 'react-redux';
 import { search_products } from '../../actions';
 import style from './style';
@@ -10,7 +11,13 @@ import BreadCrumb from '../../components/fragment/breadCrumb';
 import CardProductHorizontal from '../../components/card/productHorizontal';
 
 class Search extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 'type': '' };
+    };
     componentDidMount() {
+        console.log(this.props.matches.type);
+        this.setState({ 'type': this.props.matches.type });
         this.props.search_products();
     }
     renderProducts() {
@@ -29,7 +36,7 @@ class Search extends Component {
                 <Segment basic textAlign='center'>
                     <Container>
                         <div class={style.filter}>
-                            <FilterWithCheckBox />
+                            <FilterWithCheckBox passData={this.state.type} />
                         </div>
                     </Container>
                 </Segment>
