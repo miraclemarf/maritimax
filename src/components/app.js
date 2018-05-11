@@ -17,6 +17,7 @@ import ProductDetail from '../routes/product';
 import Search from '../routes/search';
 import About from '../routes/about';
 import Tac from '../routes/tac';
+import Contact from '../routes/contact';
 // import Profile from 'async!../routes/profile';
 
 if (module.hot) {
@@ -50,6 +51,7 @@ export default class App extends Component {
             <ProductDetail path="/product/detail" />
             <About path="/about" />
             <Tac path="/terms-condition" />
+            <Contact path="/contact" />
             <Profile path="/profile/" user="me" />
             <Profile path="/profile/:user" />
           </Router>

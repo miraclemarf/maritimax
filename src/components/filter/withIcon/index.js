@@ -60,7 +60,7 @@ export default class FilterWithIcon extends Component {
               </Grid.Column>
               <Grid.Column mobile={16} tablet={4} computer={2}>
                 <Form.Field>
-                  <Button as="a" className={style.mainTypeBtn} inverted value='3' style={this.state.value === '3' ? { 'background-color': '#0577CB' } : null} onClick={this.toggleClass}>
+                  <Button as="a" className={style.mainTypeBtn} inverted value='3' href='/contact'>
                     <Image style={{
                       'padding-bottom': '12px'
                     }} centered src='/assets/images/request.png' />

@@ -1,0 +1,18 @@
+.bgblue{
+	background-color: #0577cb !important;
+	padding:2em 0 3.3em !important;
+}
+.inputWording{
+    display: block;
+    font-size: .8em;
+    color: #DBDBDB;
+}
+.input label{
+    color: #484848 !important;
+}
+.input input{
+    border-color: #DBDBDB !important;
+}
+.tc{
+    font-size: .75em !important;
+}
