@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { userService } from '../services';
+import { history } from '../helpers';
+import { userConstants } from '../constants';
 export const FETCH_NEWS = 'fetch_news';
 export const FETCH_MORENEWS = 'fetch_morenews';
 export const FETCH_PRODUCTS = 'fetch_products';
@@ -6,7 +9,9 @@ export const SEARCH_PRODUCTS = 'search_products';
 
 const HOST_NAME = window && window.location && window.location.hostname;
 const BASE_API = `http://${HOST_NAME}:3001`;
-const PROD_API = 'http://siapayangnanya.com/api'
+const PROD_API = 'http://siapayangnanya.com/api';
+
+
 
 export function fetch_news() {
   const request = axios.get(`${BASE_API}/articles`);
@@ -37,4 +42,30 @@ export function search_products() {
     type: SEARCH_PRODUCTS,
     payload: request
   };
+}
+
+export function login(username, password) {
+  return dispatch => {
+    dispatch(request({ username }));
+    userService.login(username, password)
+      .then(
+        user => {
+          dispatch(success(user));
+          history.push('/');
+        },
+        error => {
+          dispatch(failure(error));
+          //dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+  function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+export function logout() {
+  userService.logout();
+  history.push('/login');
+  return { type: userConstants.LOGOUT };
 }

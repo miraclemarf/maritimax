@@ -16,8 +16,8 @@ class Search extends Component {
         this.state = { 'type': '' };
     };
     componentDidMount() {
-        console.log(this.props.matches.type);
-        this.setState({ 'type': this.props.matches.type });
+        //console.log(this.props);
+        //this.setState({ 'type': this.props.matches.type });
         this.props.search_products();
     }
     renderProducts() {
