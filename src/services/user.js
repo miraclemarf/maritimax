@@ -5,7 +5,7 @@ export const userService = {
 };
 
 function login(username, password) {
-    const client_secret = 'qbDAEj4NfgT6HwuADYzShDgIA63IUy61AOSgLUB8',
+    const client_secret = 'YYDxVPL3Rl4wxZQsXYCm65ysxzkpgDYLqTDeQPba',
         client_id = '2',
         scope = '*';
 

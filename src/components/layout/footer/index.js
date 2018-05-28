@@ -45,7 +45,7 @@ const Footer = (props) => (
                                     <Icon circular style={{ 'background-color': '#0577CB', 'color': '#fff', 'border-color': '#0577CB', 'box-shadow': 'none' }} size='large' name='facebook f' />
                                 </List.Item>
                                 <List.Item>
-                                    <Icon circular style={{ 'background-color': '#0577CB', 'color': '#fff', 'border-color': '#0577CB', 'box-shadow': 'none' }} size='large' name='google plus' />
+                                    <Icon circular style={{ 'background-color': '#0577CB', 'color': '#fff', 'border-color': '#0577CB', 'box-shadow': 'none' }} size='large' name='google' />
                                 </List.Item>
                             </List>
                         </Grid.Column>

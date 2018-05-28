@@ -2,8 +2,12 @@ import { h, Component } from 'preact';
 import style from './style';
 import { Segment, Container, Grid, Header, Divider, Image, Button } from 'semantic-ui-react';
 import Promo from '../../components/fragment/promo';
+import LoginModal from '../../components/fragment/loginModal';
 
 export default class Product extends Component {
+
+    show = size => () => this.setState({ size, open: true })
+
     render() {
         return (
             <div style={{ 'padding-top': '5.5em', 'background-color': '#F4F4F4', 'border-bottom': '1px solid #DBDBDB' }}>
@@ -21,7 +25,8 @@ export default class Product extends Component {
                                     </p>
                                     </div>
                                     <Divider hidden />
-                                    <Button style={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '8px' }} >Log in or Register</Button>
+                                    <LoginModal textBtn={'Log in or Register'} styleBtn={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '8px' }} />
+                                    {/* <Button onClick={this.show('mini')} style={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '8px' }} >Log in or Register</Button> */}
                                 </div>
                             </Grid.Column>
                             <Grid.Column width={5}>

@@ -7,6 +7,7 @@ import { history } from '../../../helpers';
 /* COMPONENTS */
 import Header from '../header';
 import Footer from '../footer';
+import LoginModal from '../../fragment/loginModal';
 
 /* ROUTES */
 //import Home from '../routes/home';

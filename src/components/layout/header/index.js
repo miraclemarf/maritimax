@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { BrowserRoute, Link } from 'react-router-dom';
 import { history } from '../../../helpers';
-import style from './style';
+import LoginModal from '../../fragment/loginModal';
 import { Container, Menu, Button, Image } from 'semantic-ui-react';
 
 export default class Header extends Component {
@@ -21,12 +21,15 @@ export default class Header extends Component {
             <Menu.Item>   <Link to="/news">News</Link></Menu.Item>
             <Menu.Item>   <Link to="/about">About Us</Link></Menu.Item>
             <Menu.Item>   <Link to="/contact">Contact Us</Link></Menu.Item>
-            <Menu.Item>
-              <Button className={style.btn}>Log-in</Button>
-            </Menu.Item>
+            {
+              !localStorage.getItem('user') ?
+                <Menu.Item >
+                  <LoginModal textBtn={'Log-in'} styleBtn={{ 'color': '#0577cb', 'background': 'white', 'min-width': '150px' }} />
+                </Menu.Item> : null
+            }
           </Menu.Menu>
         </Container>
-      </Menu>
+      </Menu >
     );
   }
 }

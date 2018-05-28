@@ -1,0 +1,40 @@
+.loginModal{
+    margin-left: -180px !important;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: #0577cb !important;
+}
+.loginModal > div{
+    background: transparent !important;
+}
+.loginModal form{
+     margin-left: 35px;
+     margin-right: 35px;
+}
+.loginModal input[type=email],.loginModal input[type=email]:focus,
+.loginModal input[type=password], .loginModal input[type=password]:focus{
+    background: transparent !important;
+    color: #fff !important;
+    border: hidden !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #fff !important;
+}
+
+.field i{
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+.field ::placeholder {
+    color: white !important;
+    opacity: 1 !important; /* Firefox */
+}
+
+.field :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: white !important;
+}
+
+.field ::-ms-input-placeholder { /* Microsoft Edge */
+   color: white !important;
+}
