@@ -1,11 +1,14 @@
+import { authHeader } from '../helpers';
+
 export const userService = {
     login,
     logout,
-    getAll
+    register,
+    getUser
 };
 
 function login(username, password) {
-    const client_secret = 'YYDxVPL3Rl4wxZQsXYCm65ysxzkpgDYLqTDeQPba',
+    const client_secret = 'd6dRh1z0bqCibk9XtQRGwzFeHh2P0JlDWnGiUffP',
         client_id = '2',
         scope = '*';
 
@@ -51,6 +54,59 @@ function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
 }
-function getAll() {
-    return null;
+function getUser() {
+    const DO = 'http://128.199.233.95';
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(DO + '/api/user', requestOptions).then(response =>
+        console.log(response)
+    );
+}
+
+function register(username, email, password) {
+
+    const DO = 'http://128.199.233.95';
+    var formData = new FormData();
+    formData.append('name', username);
+    formData.append('email', email);
+    formData.append('password', password);
+
+    const requestOptions = {
+        method: 'POST',
+        body: formData
+    };
+    /*const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password,client_id, client_secret, scope })
+    };*/
+
+    /*'/users/authenticate'*/
+    return fetch(DO + '/api/user/register', requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(user => {
+            // login successful if there's a jwt token in the response
+            //console.log(user);
+            if (user && user.access_token) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+
+            return user;
+        });
+}
+
+function handleResponse(response) {
+    if (!response.ok) {
+        return Promise.reject(response.statusText);
+    }
+
+    return response.json();
 }

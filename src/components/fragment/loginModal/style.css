@@ -1,5 +1,6 @@
 .loginModal{
     margin-left: -180px !important;
+    max-height: 517px;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -13,7 +14,8 @@
      margin-right: 35px;
 }
 .loginModal input[type=email],.loginModal input[type=email]:focus,
-.loginModal input[type=password], .loginModal input[type=password]:focus{
+.loginModal input[type=password], .loginModal input[type=password]:focus,
+.loginModal input[type=text], .loginModal input[type=text]:focus{
     background: transparent !important;
     color: #fff !important;
     border: hidden !important;

@@ -11,7 +11,7 @@ import Promo from '../../components/fragment/promo';
 import BreadCrumb from '../../components/fragment/breadCrumb';
 import CardProductHorizontal from '../../components/card/productHorizontal';
 
-class Search extends Component {
+class ListCharter extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,10 +27,13 @@ class Search extends Component {
     };
     componentDidMount() {
 
-        const param = qs.parse(this.props.location.search)
-        console.log(param);
+        const param = {}
+        param.booking_type = 'charter';
         this.setState({ 'param': param });
         this.props.search_products(param, this.state.page);
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log(this.props.router);
     }
 
     mapProducts() {
@@ -114,4 +117,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     search_products
-})(Search);
+})(ListCharter);

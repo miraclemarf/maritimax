@@ -18,3 +18,14 @@
 .right h5{
     color: #535353;    
 }
+
+.filter{
+    padding-left: 6%;
+    padding-right: 6%;
+}
+.search{
+    background-color: #F4F4F4;
+	min-height: 100%;
+    width: 100%;
+    padding-top: 5.5em;
+}

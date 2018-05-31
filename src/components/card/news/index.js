@@ -6,7 +6,7 @@ const CardNews = (props) => (
   <Card fluid style={{
     'box-shadow': 'none'
   }}>
-    <Image fluid src={props.image} />
+    <Image fluid src={props.img_cover} />
     <Card.Content style={{
       'border': 'none',
       'padding-left': '0',
@@ -14,7 +14,7 @@ const CardNews = (props) => (
     }}>
       <Card.Header style={{ 'margin-bottom': '15px' }}>
         {props.title}
-        <Label content={props.category} basic
+        <Label content={props.category_post} basic
           style={{ 'display': 'block', 'border': 'none', 'padding': '0', 'color': '#0577CB', 'margin-top': '4px', 'font-size': '.7em' }} />
       </Card.Header>
       <p className={style.description}>

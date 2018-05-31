@@ -1,61 +1,73 @@
 import { h, Component } from 'preact';
 import style from './style';
-import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Segment, Divider } from 'semantic-ui-react';
+import { history } from '../../../helpers';
+import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Segment, Divider, Dropdown } from 'semantic-ui-react';
 
 
 export default class FilterWithIcon extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      booking_type: '',
+      city: '',
+      active: false,
+      submitted: false,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
-    this.state = { active: false, value: '' };
   };
   //state = {};
   toggleClass(e) {
     const currentState = this.state.active;
     const val = e.currentTarget.getAttribute("value");
     //console.log(e.currentTarget.getAttribute("value"));
-
-    this.setState({ active: !currentState, value: val });
+    this.setState({ active: !currentState, booking_type: val });
 
   };
-  handleChange() {
-    alert()
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({ submitted: true });
+    console.log(this.state);
+    const booking_type = this.state.booking_type != '' ? `&booking_type=${this.state.booking_type}` : '';
+    const city = this.state.city != '' ? `&city=${this.state.city}` : '';
+    history.push(`/search?${booking_type}${city}`);
+
   }
-  /* handleChange(e, { value }) {
-    console.log(value);
-    this.setState({ value });
-  } */
-  state = {};
-  handleChange = (e, { value }) => this.setState({ value });
+
+  handleChange(e, { name, value }) {
+    this.setState({ [name]: value });
+  }
 
   render() {
-    const { value } = this.state;
+    const { booking_type, city, active } = this.state;
 
     return (
-      <Form action="/search">
+      <Form onSubmit={this.handleSubmit}>
         <Container>
           <Grid centered padded>
             <Grid.Row centered>
               <Grid.Column mobile={16} tablet={4} computer={2}>
                 <Form.Field >
-                  <Button as="a" inverted value='1' style={this.state.value === '1' ? { 'background-color': '#0577CB' } : null} className={style.mainTypeBtn} onClick={this.toggleClass} >
+                  <Button as="a" inverted value='buy' style={this.state.booking_type === 'buy' ? { 'background-color': '#0577CB' } : null} className={style.mainTypeBtn} onClick={this.toggleClass} >
                     <Image style={{
                       'padding-bottom': '20px'
                     }} centered src='/assets/images/buy.png' />
                     <Label className={style.label} basic content='Buy' size={'large'} />
                   </Button>
-                  <Radio name='type' className={style.hidden} label='Buy' value='1' checked={value === '1'} onChange={this.handleChange} />
+                  <Radio name='booking_type' className={style.hidden} label='Buy' value='buy' checked={booking_type === 'buy'} onChange={this.handleChange} />
                 </Form.Field>
               </Grid.Column>
               <Grid.Column mobile={16} tablet={4} computer={2}>
                 <Form.Field>
-                  <Button as="a" className={style.mainTypeBtn} inverted value='2' style={this.state.value === '2' ? { 'background-color': '#0577CB' } : null} onClick={this.toggleClass}>
+                  <Button as="a" className={style.mainTypeBtn} inverted value='charter' style={this.state.booking_type === 'charter' ? { 'background-color': '#0577CB' } : null} onClick={this.toggleClass}>
                     <Image style={{
                       'padding-bottom': '12px'
                     }} centered src='/assets/images/charter.png' />
                     <Label className={style.label} basic content='Charter' size={'large'} />
                   </Button>
-                  <Radio name='type' className={style.hidden} label='Charter' value='2' checked={value === '2'} onChange={this.handleChange} />
+                  <Radio name='booking_type' className={style.hidden} label='Charter' value='charter' checked={booking_type === 'charter'} onChange={this.handleChange} />
                 </Form.Field>
               </Grid.Column>
               <Grid.Column mobile={16} tablet={4} computer={2}>
@@ -66,7 +78,6 @@ export default class FilterWithIcon extends Component {
                     }} centered src='/assets/images/request.png' />
                     <Label className={style.label} basic content='Request' size={'large'} />
                   </Button>
-                  <Radio className={style.hidden} label='Request' value='3' checked={value === '3'} onChange={this.handleChange} />
                 </Form.Field>
               </Grid.Column>
             </Grid.Row>
@@ -92,9 +103,12 @@ export default class FilterWithIcon extends Component {
             </Form.Field>
             <Form.Field control={Input} placeholder="Date" />
             <Form.Field width={3}>
-              <Select placeholder="Location" options={[{ value: "Jakarta", text: "Jakarta" },
-              { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }]}
-                style={{ minWidth: "4em" }} />
+              <Dropdown
+                selection
+                placeholder="City" name="city" options={[{ value: "Makasar", text: "Makasar" },
+                { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }]}
+                style={{ minWidth: "4em" }} onChange={this.handleChange}
+              />
             </Form.Field>
             <Form.Field width={3}>
               <Select placeholder="Kapasitas" options={[{ value: "0-500", text: "0 - 500 KG" },

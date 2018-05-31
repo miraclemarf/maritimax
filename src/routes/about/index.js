@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetch_products } from '../../actions';
 import _ from 'lodash';
 import style from './style';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 import { Segment, Container, Grid, Header, Divider, Image, Button } from 'semantic-ui-react';
 import CardProduct from '../../components/card/product';
 
@@ -53,6 +55,8 @@ class About extends Component {
                     </Container>
                 </Segment>
                 <Divider hidden />
+                <DayPicker />
+
             </div>
         );
     }

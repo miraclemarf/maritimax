@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { ConnectedRouter } from 'react-router-redux';
 import { history } from '../../../helpers';
 
 /* COMPONENTS */
@@ -16,6 +16,7 @@ import Home from '../../../routes/home';
 import News from '../../../routes/news';
 import NewsDetail from '../../../routes/news/detail';
 import ProductDetail from '../../../routes/product';
+import ListCharter from '../../../routes/product/listCharter';
 import Search from '../../../routes/search';
 import About from '../../../routes/about';
 import Tac from '../../../routes/tac';
@@ -39,11 +40,13 @@ export default class Main extends Component {
         //const { alert } = this.props;
         return (
             <div>
-                <Router history={history}>
+                <ConnectedRouter history={history}>
                     <div>
                         <Header />
                         <Route path="/" exact component={Home} />
                         <Route path="/search" component={Search} />
+
+                        <Route path="/charter" component={ListCharter} />
                         <Route path="/news" exact component={News} />
                         <Route path="/news/detail" component={NewsDetail} />
                         <Route path="/product/detail" component={ProductDetail} />
@@ -60,7 +63,7 @@ export default class Main extends Component {
                         {/* <Profile path="/profile/" user="me" />
                         <Profile path="/profile/:user" /> */}
                     </div>
-                </Router>
+                </ConnectedRouter >
                 <Footer />
             </div>
         );

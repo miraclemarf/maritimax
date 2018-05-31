@@ -15,7 +15,7 @@ class Home extends Component {
         this.props.fetch_news();
     }
     renderNews() {
-        return _.map(this.props.news, news => {
+        return _.map(this.props.news.data, news => {
             return (
                 <Grid.Column>
                     <CardNews {...news} />

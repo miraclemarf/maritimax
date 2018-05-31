@@ -4,7 +4,7 @@ import { FETCH_NEWS, FETCH_MORENEWS } from '../actions';
 export default function (state = {}, action) {
   switch (action.type) {
     case FETCH_NEWS:
-      return _.mapKeys(action.payload.data, 'id');
+      return action.payload.data
     case FETCH_MORENEWS:
       return _.mapKeys(action.payload.data, 'id');
     default:
