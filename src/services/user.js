@@ -12,7 +12,7 @@ function login(username, password) {
         client_id = '2',
         scope = '*';
 
-    const DO = 'http://128.199.233.95';
+    const DO = 'http://siapayangnanya.com';
     var formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
@@ -55,7 +55,7 @@ function logout() {
     localStorage.removeItem('user');
 }
 function getUser() {
-    const DO = 'http://128.199.233.95';
+    const DO = 'http://siapayangnanya.com';
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
@@ -65,7 +65,7 @@ function getUser() {
 
 function register(username, email, password) {
 
-    const DO = 'http://128.199.233.95';
+    const DO = 'http://siapayangnanya.com';
     var formData = new FormData();
     formData.append('name', username);
     formData.append('email', email);
