@@ -1,0 +1,11 @@
+.product-main .thumb-slide{
+    margin-top: 20px;
+}
+.product-main .thumb-slide .slick-slide{
+    margin-right: 2%;
+    width: calc(94%/4);
+    cursor: pointer;
+}
+.product-main .thumb-slide .slick-slide:last-child{
+    margin-right: 0;
+}

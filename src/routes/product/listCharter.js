@@ -32,9 +32,6 @@ class ListCharter extends Component {
         this.setState({ 'param': param });
         this.props.search_products(param, this.state.page);
     }
-    componentDidUpdate(prevProps, prevState) {
-        console.log(this.props.router);
-    }
 
     mapProducts() {
         const productsObj = _.mapKeys(this.props.searchProducts.data, 'id');

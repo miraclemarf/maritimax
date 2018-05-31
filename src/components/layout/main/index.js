@@ -49,7 +49,7 @@ export default class Main extends Component {
                         <Route path="/charter" component={ListCharter} />
                         <Route path="/news" exact component={News} />
                         <Route path="/news/detail" component={NewsDetail} />
-                        <Route path="/product/detail" component={ProductDetail} />
+                        <Route path="/product/detail/:id" component={ProductDetail} />
                         <Route path="/about" component={About} />
                         <Route path="/terms-condition" component={Tac} />
                         <Route path="/contact" component={Contact} />

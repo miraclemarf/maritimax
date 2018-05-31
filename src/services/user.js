@@ -60,9 +60,7 @@ function getUser() {
         method: 'GET',
         headers: authHeader()
     };
-    return fetch(DO + '/api/user', requestOptions).then(response =>
-        console.log(response)
-    );
+    return fetch(DO + '/api/user', requestOptions).then(handleResponse);
 }
 
 function register(username, email, password) {

@@ -29,7 +29,7 @@ export default class FilterWithIcon extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ submitted: true });
-    console.log(this.state);
+    //console.log(this.state);
     const booking_type = this.state.booking_type != '' ? `&booking_type=${this.state.booking_type}` : '';
     const city = this.state.city != '' ? `&city=${this.state.city}` : '';
     history.push(`/search?${booking_type}${city}`);

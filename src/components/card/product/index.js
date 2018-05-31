@@ -35,7 +35,7 @@ const CardProduct = (props) => (
           </div>
           <span style={{ 'color': '#868686', 'font-size': '90%' }}>{props.available_capacity}{'Kg spaces left'}</span>
         </div>
-        <Button as="a" href={'/product/detail'} style={{ 'background-color': '#0577CB', 'color': '#fff' }} floated='right'>NEGOTIATE</Button>
+        <Button as="a" href={'/product/detail/' + props.id} style={{ 'background-color': '#0577CB', 'color': '#fff' }} floated='right'>NEGOTIATE</Button>
         <Divider clearing hidden />
       </div>
     </Card.Content>

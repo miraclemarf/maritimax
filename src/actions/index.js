@@ -7,6 +7,7 @@ export const FETCH_MORENEWS = 'fetch_morenews';
 export const FETCH_PRODUCTS = 'fetch_products';
 export const SEARCH_PRODUCTS = 'search_products';
 export const SEARCHMORE_PRODUCTS = 'searchmore_products';
+export const GET_PRODUCT = 'get_product';
 
 const HOST_NAME = window && window.location && window.location.hostname;
 const BASE_API = `http://${HOST_NAME}:3001`;
@@ -117,4 +118,12 @@ export function get_user() {
   };
 
   function success(user) { return { type: userConstants.GET_USER, user } }
+}
+
+export function get_product(id) {
+  const request = axios.get(`${PROD_API}/cargo/${id}`);
+  return {
+    type: GET_PRODUCT,
+    payload: request
+  };
 }
