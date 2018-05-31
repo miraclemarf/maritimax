@@ -102,6 +102,7 @@ function register(username, email, password) {
 }
 
 function handleResponse(response) {
+    console.log(response);
     if (!response.ok) {
         return Promise.reject(response.statusText);
     }
