@@ -136,9 +136,7 @@ export default class FilterWithIcon extends Component {
             <Form.Field width={3}>
               <Dropdown
                 selection
-                placeholder="City" name="city" options={[{ value: "Makasar", text: "Makasar" },
-                { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }]}
-                style={{ minWidth: "4em" }} onChange={this.handleChange}
+                placeholder="City" name="city" options={[{ value: "", text: "--Choose One--" }, { value: "Jakarta", text: "Jakarta" }, { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }, { value: "Makasar", text: "Makasar" }]} onChange={this.handleChange}
               />
             </Form.Field>
             <Form.Field width={3}>
@@ -146,8 +144,7 @@ export default class FilterWithIcon extends Component {
             </Form.Field>
             <Form.Field width={3}>
               <Dropdown
-                selection name='year_build' placeholder="Tahun" options={[{ value: "2018", text: "2018" },
-                { value: "2017", text: "2017" }, { value: "2016", text: "2016" }]}
+                selection name='year_build' placeholder="Tahun" options={[{ value: "", text: "--Choose One--" }, { value: "2018", text: "2018" }, { value: "2017", text: "2017" }, { value: "2016", text: "2016" }, { value: "2015", text: "2015" }]}
                 style={{ minWidth: "4em" }} onChange={this.handleChange} />
             </Form.Field>
           </Form.Group>

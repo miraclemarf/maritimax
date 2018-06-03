@@ -124,8 +124,7 @@ export default class FilterWithCheckBox extends Component {
                         <Form.Field width={3}>
                             <Dropdown
                                 selection defaultValue={this.props.passData.city}
-                                placeholder="City" name="city" options={[{ value: "", text: "--Choose One--" }, { value: "Makasar", text: "Makasar" },
-                                { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }]}
+                                placeholder="City" name="city" options={[{ value: "", text: "--Choose One--" }, { value: "Jakarta", text: "Jakarta" }, { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }, { value: "Makasar", text: "Makasar" }]}
                                 style={{ minWidth: "4em" }} onChange={this.handleChange}
                             />
                         </Form.Field>
@@ -134,8 +133,7 @@ export default class FilterWithCheckBox extends Component {
                         </Form.Field>
                         <Form.Field width={3}>
                             <Dropdown
-                                selection name='year_build' defaultValue={this.props.passData.year_build} placeholder="Tahun" options={[{ value: "", text: "--Choose One--" }, { value: "2018", text: "2018" },
-                                { value: "2017", text: "2017" }, { value: "2016", text: "2016" }]}
+                                selection name='year_build' defaultValue={this.props.passData.year_build} placeholder="Tahun" options={[{ value: "", text: "--Choose One--" }, { value: "2018", text: "2018" }, { value: "2017", text: "2017" }, { value: "2016", text: "2016" }, { value: "2015", text: "2015" }]}
                                 style={{ minWidth: "4em" }} onChange={this.handleChange} />
                         </Form.Field>
                     </Form.Group>
