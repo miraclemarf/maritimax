@@ -1,19 +1,21 @@
 import axios from 'axios';
+
+import moment from 'moment';
 import { userService } from '../services';
 import { history } from '../helpers';
+import { authHeader } from '../helpers';
 import { userConstants } from '../constants';
 export const FETCH_NEWS = 'fetch_news';
-export const FETCH_MORENEWS = 'fetch_morenews';
+export const FETCH_ALLNEWS = 'fetch_allnews';
 export const FETCH_PRODUCTS = 'fetch_products';
 export const SEARCH_PRODUCTS = 'search_products';
 export const SEARCHMORE_PRODUCTS = 'searchmore_products';
 export const GET_PRODUCT = 'get_product';
+export const POST_BOOKING = 'post_booking';
 
 const HOST_NAME = window && window.location && window.location.hostname;
 const BASE_API = `http://${HOST_NAME}:3001`;
 const PROD_API = 'http://siapayangnanya.com/api';
-
-
 
 export function fetch_news() {
   const request = axios.get(`${PROD_API}/posts/paginate/3`);
@@ -22,16 +24,22 @@ export function fetch_news() {
     payload: request
   };
 }
-export function fetch_morenews() {
-  const request = axios.get(`${BASE_API}/articlesMore`);
+export function fetch_allnews(page) {
+  const request = axios.get(`${PROD_API}/posts/paginate/9`, {
+    params: {
+      page: page
+    }
+  });
   return {
-    type: FETCH_MORENEWS,
+    type: FETCH_ALLNEWS,
     payload: request
   };
 }
 
 export function fetch_products() {
-  const request = axios.get(`${PROD_API}/cargos/paginate/3`);
+  const request = axios.get(`${PROD_API}/cargos/filter`, {
+    params: { limit: '3' }
+  });
   return {
     type: FETCH_PRODUCTS,
     payload: request
@@ -39,10 +47,21 @@ export function fetch_products() {
 }
 
 export function search_products(param, page) {
+  let date = undefined
+  if (param.available_date != undefined) {
+    date = moment(param.available_date).format('YYYY-MM-DD') + ' 00:00:00';
+  }
+  console.log(date);
   const request = axios.get(`${PROD_API}/cargos/filter`, {
     params: {
       booking_type: param.booking_type,
       city: param.city,
+      description: param.description,
+      available_capacity: param.available_capacity,
+      available_date: date,
+      charter_type_id: param.charter_type_id,
+      cargo_model_id: param.cargo_model_id,
+      year_build: param.year_build,
       page: page
     }
   });
@@ -105,7 +124,7 @@ export function get_user() {
     userService.getUser()
       .then(
         user => {
-          dispatch(success(user));
+          dispatch(success(user.data));
           //console.log(user);
           //history.push('/');
         },
@@ -126,4 +145,16 @@ export function get_product(id) {
     type: GET_PRODUCT,
     payload: request
   };
+}
+
+export function post_booking(formBody) {
+  formBody.date = moment(formBody.date).format('YYYY-MM-DD') + ' 00:00:00';
+  const request = axios.post(`${PROD_API}/booking/process`, formBody, {
+    headers: authHeader()
+  })
+  return {
+    type: POST_BOOKING,
+    payload: request
+  }
+
 }

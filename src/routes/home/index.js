@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { fetch_products, fetch_news } from '../../actions';
 import _ from 'lodash';
@@ -10,6 +11,9 @@ import CardNews from '../../components/card/news';
 import CardProduct from '../../components/card/product';
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+    };
     componentDidMount() {
         this.props.fetch_products();
         this.props.fetch_news();
@@ -33,6 +37,7 @@ class Home extends Component {
         });
     }
     render() {
+        console.log(this.state)
         return (
             <div class={style.home}>
                 <Segment basic textAlign='center' className={style.bgsegment}>

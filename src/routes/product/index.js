@@ -44,24 +44,37 @@ class Product extends Component {
         }
     }
 
+    renderBtnNego() {
+
+        if (!_.isEmpty(this.props.auth)) {
+            if (!_.isEmpty(this.props.product)) {
+                return (<Button as={'a'} href={'/product/detail/' + this.props.product.id + '/negotiate'} fluid style={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '8px', 'max-width': '90%' }} >NEGOTIATE</Button>);
+            }
+        } else {
+            return (<Button disabled fluid style={{ 'background-color': '#DBDBDB', 'color': '#fff', 'margin-bottom': '8px', 'max-width': '90%', 'cursor': 'not-allowed' }} >NEGOTIATE</Button>);
+        }
+
+    }
+
 
     render() {
+        if (_.isEmpty(this.props.product)) {
+            return <div>Loading...</div>
+        }
         return (
-
             <div style={{ 'padding-top': '5.5em', 'background-color': '#F4F4F4', 'border-bottom': '1px solid #DBDBDB' }}>
-
                 <Segment style={{ 'padding': '0' }} basic>{ /*SINGLE PROMO*/}
                     <Container style={{ 'margin': '4em 0' }}>
-                        <Grid columns={2} stackable>
+                        <Grid columns={2} stackable style={!_.isEmpty(this.props.auth) ? { 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' } : ''}>
                             <Grid.Column width={11}>
                                 {this.renderMainProduct()}
 
                             </Grid.Column>
                             <Grid.Column width={5}>
-                                <div style={{ 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' }}>
-                                    <h4 style={{ 'color': '#0577CB', 'margin-bottom': '0' }}>{this.props.product.name}</h4>
+                                <div style={_.isEmpty(this.props.auth) ? { 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' } : ''}>
+                                    <h2 style={{ 'color': '#0577CB', 'margin-bottom': '0' }}>{this.props.product.name}</h2>
                                     <div style={{ 'margin-bottom': '5px', 'color': '#484848' }}>{this.props.product.cargo_model}</div>
-                                    <span style={{ 'color': '#0577CB', 'font-size': '88%', 'font-style': 'italic' }}>{this.props.product.location}, {this.props.product.city}</span>
+                                    <span style={{ 'color': '#0577CB', 'font-size': '92%', 'font-style': 'italic' }}>{this.props.product.location}, {this.props.product.city}</span>
                                     <hr style={{ 'border-color': '#DBDBDB', 'background': 'transparent' }} />
                                     <div>
                                         <div className={style.left}>
@@ -139,13 +152,13 @@ class Product extends Component {
                                         <div>
                                             <h2 style={{ 'color': '#0577CB' }}>{"Rp. "}{this.props.product.price}{"/Month"}</h2>
                                         </div>
-                                        <div style={{ 'font-size': '88%', 'margin-bottom': '10px', 'color': '#535353' }}>
+                                        <div style={{ 'font-size': '92%', 'margin-bottom': '10px', 'color': '#535353' }}>
                                             {"Available time for charter from " + this.props.product.available_start + " - " + this.props.product.available_end}
                                         </div>
                                         <div style={{ 'color': '#484848', 'margin-bottom': '10px' }}>
-                                            <strong style={{ 'color': '#0577CB' }}>{"10.000 Kg"}</strong>{" spaces left, from "}<strong>{"20.000 Kg"}</strong>
+                                            <strong style={{ 'color': '#0577CB' }}>{this.props.product.available_capacity + " Kg"}</strong>{" spaces left, from "}<strong>{this.props.product.load_capacity + " Kg"}</strong>
                                         </div>
-                                        <Button fluid style={{ 'background-color': '#DBDBDB', 'color': '#fff', 'margin-bottom': '8px', 'max-width': '80%' }} >NEGOTIATE</Button>
+                                        {this.renderBtnNego()}
                                         {/* <div style={{ 'font-size': '88%', 'margin-bottom': '10px', 'color': '#535353' }}>
                                             {"Call for Price if price hidden"}
                                         </div> */}

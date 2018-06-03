@@ -16,6 +16,7 @@ import Home from '../../../routes/home';
 import News from '../../../routes/news';
 import NewsDetail from '../../../routes/news/detail';
 import ProductDetail from '../../../routes/product';
+import Nego from '../../../routes/nego';
 import ListCharter from '../../../routes/product/listCharter';
 import Search from '../../../routes/search';
 import About from '../../../routes/about';
@@ -49,7 +50,8 @@ export default class Main extends Component {
                         <Route path="/charter" component={ListCharter} />
                         <Route path="/news" exact component={News} />
                         <Route path="/news/detail" component={NewsDetail} />
-                        <Route path="/product/detail/:id" component={ProductDetail} />
+                        <Route exact path="/product/detail/:id" component={ProductDetail} />
+                        <Route exact path="/product/detail/:id/negotiate" component={Nego} />
                         <Route path="/about" component={About} />
                         <Route path="/terms-condition" component={Tac} />
                         <Route path="/contact" component={Contact} />

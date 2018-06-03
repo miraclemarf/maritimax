@@ -5,6 +5,7 @@ import LoginModal from '../../fragment/loginModal';
 import { Container, Menu, Button, Image, Dropdown } from 'semantic-ui-react';
 import { connect } from 'react-redux'
 import { get_user } from '../../../actions'
+import style from './style';
 
 class Header extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Header extends Component {
   }
 
   render() {
+    console.log(this.props.user)
     return (
       <Menu style={{
         'background-color': '#0577cb'
@@ -29,7 +31,7 @@ class Header extends Component {
             <Menu.Item> <Link to="/">Home</Link></Menu.Item>
             <Menu.Item>   <a href="/search?booking_type=charter">Penyewaan</a></Menu.Item>
             <Menu.Item>   <a href="/search?booking_type=buy">Jual Beli</a></Menu.Item>
-            <Menu.Item>   <Link to="/news">News</Link></Menu.Item>
+            <Menu.Item>   <a href="/news">News</a></Menu.Item>
             <Menu.Item>   <Link to="/about">About Us</Link></Menu.Item>
             <Menu.Item>   <Link to="/contact">Contact Us</Link></Menu.Item>
             {
@@ -40,11 +42,11 @@ class Header extends Component {
                 </Menu.Item>
                 :
                 <Menu.Item>
-                  <Dropdown text='User' floating button>
+                  <Dropdown className={style.username} text={this.props.user.userData != undefined ? this.props.user.userData.name : ''} floating button>
                     <Dropdown.Menu>
-                      <Dropdown.Item>Important</Dropdown.Item>
-                      <Dropdown.Item>Announcement</Dropdown.Item>
-                      <Dropdown.Item>Discussion</Dropdown.Item>
+                      {/* <Dropdown.Item>Important</Dropdown.Item> */}
+                      {/* <Dropdown.Item><a href="/user/booking">Booking</a></Dropdown.Item> */}
+                      <Dropdown.Item><a href="/logout">Logout</a></Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Menu.Item>
@@ -57,7 +59,7 @@ class Header extends Component {
 }
 function mapStateToProps(state) {
   return {
-    userData: state
+    user: state.auth
   };
 }
 

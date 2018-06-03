@@ -11,7 +11,7 @@ const CardProduct = (props) => (
                 <span style={{ 'color': '#0577CB', 'font-size': '88%', 'font-style': 'italic' }}>{props.city}</span>
             </Grid.Column>
             <Grid.Column width={6} textAlign={"right"}>
-                <Button as="a" href={'/product/detail'} style={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '15px' }} >See More</Button>
+                <Button as="a" href={'/product/detail/' + props.id} style={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '15px' }} >See More</Button>
                 <div>
                     <h3 style={{ 'color': '#0577CB' }}>{"Rp. "}{props.price}{"/month"}</h3>
                 </div>

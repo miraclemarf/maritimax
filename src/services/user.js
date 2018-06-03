@@ -1,4 +1,5 @@
 import { authHeader } from '../helpers';
+import axios from 'axios';
 
 export const userService = {
     login,
@@ -56,11 +57,10 @@ function logout() {
 }
 function getUser() {
     const DO = 'http://siapayangnanya.com';
-    const requestOptions = {
-        method: 'GET',
+
+    return axios.get(`${DO}/api/user`, {
         headers: authHeader()
-    };
-    return fetch(DO + '/api/user', requestOptions).then(handleResponse);
+    });
 }
 
 function register(username, email, password) {
@@ -102,7 +102,6 @@ function register(username, email, password) {
 }
 
 function handleResponse(response) {
-    console.log(response);
     if (!response.ok) {
         return Promise.reject(response.statusText);
     }

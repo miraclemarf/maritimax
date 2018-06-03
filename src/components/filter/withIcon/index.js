@@ -3,6 +3,10 @@ import style from './style';
 import { history } from '../../../helpers';
 import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Segment, Divider, Dropdown } from 'semantic-ui-react';
 
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 export default class FilterWithIcon extends Component {
   constructor(props) {
@@ -10,11 +14,18 @@ export default class FilterWithIcon extends Component {
     this.state = {
       booking_type: '',
       city: '',
+      description: '',
+      available_date: '',
+      charter_type_id: '',
+      cargo_model_id: '',
+      available_capacity: '',
+      year_build: '',
       active: false,
       submitted: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
   };
@@ -29,20 +40,38 @@ export default class FilterWithIcon extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ submitted: true });
-    //console.log(this.state);
     const booking_type = this.state.booking_type != '' ? `&booking_type=${this.state.booking_type}` : '';
     const city = this.state.city != '' ? `&city=${this.state.city}` : '';
-    history.push(`/search?${booking_type}${city}`);
-
+    const description = this.state.description != '' ? `&description=${this.state.description}` : '';
+    const available_date = this.state.available_date != '' ? `&available_date=${this.state.available_date.format('YYYY-MM-DD').toString()}` : '';
+    const charter_type_id = this.state.charter_type_id != '' ? `&charter_type_id=${this.state.charter_type_id}` : '';
+    const cargo_model_id = this.state.cargo_model_id != '' ? `&cargo_model_id=${this.state.cargo_model_id}` : '';
+    const available_capacity = this.state.available_capacity != '' ? `&available_capacity=${this.state.available_capacity}` : '';
+    const year_build = this.state.year_build != '' ? `&year_build=${this.state.year_build}` : '';
+    history.push(`/search?${booking_type}${city}${description}${available_date}${charter_type_id}${cargo_model_id}${available_capacity}${year_build}`);
   }
 
   handleChange(e, { name, value }) {
     this.setState({ [name]: value });
   }
+  handleChangeDate(date) {
+    this.setState({ available_date: date });
+  }
 
   render() {
     const { booking_type, city, active } = this.state;
-
+    const ddModel = [
+      { "value": "1", "text": "Cargo Vessle" },
+      { "value": "2", "text": "Container Ship" },
+      { "value": "3", "text": "Tanker" },
+      { "value": "4", "text": "Reefer Ship" }
+    ]
+    const ddCharter = [
+      { "value": "1", "text": "Kapal" },
+      { "value": "2", "text": "Service" },
+      { "value": "3", "text": "Spareparts" },
+      { "value": "4", "text": "Tools" }
+    ]
     return (
       <Form onSubmit={this.handleSubmit}>
         <Container>
@@ -85,8 +114,8 @@ export default class FilterWithIcon extends Component {
         </Container>
         <Segment style={{ "margin-left": "2.5em", "margin-right": "2.5em" }}>
           <Form.Group>
-            <Form.Input className={style.inputNoBorder} fluid icon="search" iconPosition="left" action="Search" width={16}
-              placeholder="Terlusuri berdasarkan jenis kargo atau lokasi" />
+            <Form.Field control={Input} name='description' className={style.inputNoBorder} fluid icon="search" iconPosition="left" action="Search" width={16}
+              placeholder="Terlusuri berdasarkan jenis kargo atau lokasi" onChange={this.handleChange} />
           </Form.Group>
           <Divider style={{ 'margin-left': '-15px', 'margin-right': '-15px' }} />
           <Form.Group>
@@ -94,14 +123,16 @@ export default class FilterWithIcon extends Component {
           </Form.Group>
           <Form.Group>
             <Form.Field width={3}>
-              <Select placeholder="Model Vessel" options={[{ value: "model1", text: "Model 1" },
-              { value: "model2", text: "Model 2" }]} style={{ minWidth: "4em" }} />
+              <Dropdown
+                selection name='cargo_model_id' placeholder="Model Vessel" options={ddModel} style={{ minWidth: "4em" }} onChange={this.handleChange} />
             </Form.Field>
             <Form.Field width={3}>
-              <Select placeholder="Type Charter" options={[{ value: "tc1", text: "Type Charter 1" },
-              { value: "tc2", text: "Type Charter 2" }]} style={{ minWidth: "4em" }} />
+              <Dropdown
+                selection name='charter_type_id' placeholder="Type Charter" options={ddCharter} style={{ minWidth: "4em" }} onChange={this.handleChange} />
             </Form.Field>
-            <Form.Field control={Input} placeholder="Date" />
+
+            <DatePicker name='available_date' selected={this.state.available_date} onChange={this.handleChangeDate} placeholderText="Date"
+            />
             <Form.Field width={3}>
               <Dropdown
                 selection
@@ -111,14 +142,13 @@ export default class FilterWithIcon extends Component {
               />
             </Form.Field>
             <Form.Field width={3}>
-              <Select placeholder="Kapasitas" options={[{ value: "0-500", text: "0 - 500 KG" },
-              { value: "500-1000", text: "500 - 1000 KG" }, { value: "1000-2000", text: "1000 - 2000 KG" }]}
-                style={{ minWidth: "4em" }} />
+              <Form.Field control={Input} name='available_capacity' placeholder="Kapasitas (Kg)" onChange={this.handleChange} />
             </Form.Field>
             <Form.Field width={3}>
-              <Select placeholder="Tahun" options={[{ value: "2018", text: "2018" },
-              { value: "2017", text: "2017" }, { value: "2016", text: "2016" }]}
-                style={{ minWidth: "4em" }} />
+              <Dropdown
+                selection name='year_build' placeholder="Tahun" options={[{ value: "2018", text: "2018" },
+                { value: "2017", text: "2017" }, { value: "2016", text: "2016" }]}
+                style={{ minWidth: "4em" }} onChange={this.handleChange} />
             </Form.Field>
           </Form.Group>
           <Divider hidden />

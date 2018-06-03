@@ -1,0 +1,8 @@
+.negoModal{
+    margin-left: -360px !important;
+    max-height: 517px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: #0577cb !important;
+}

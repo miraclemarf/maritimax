@@ -15,7 +15,6 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            'type': '',
             'param': '',
             'products': [],
             'hasMore': false,
@@ -27,8 +26,7 @@ class Search extends Component {
     };
     componentDidMount() {
 
-        const param = qs.parse(this.props.location.search)
-        console.log(param);
+        const param = qs.parse(this.props.location.search);
         this.setState({ 'param': param });
         this.props.search_products(param, this.state.page);
     }
@@ -54,7 +52,7 @@ class Search extends Component {
 
     }
     ButtonMore() {
-        if (this.props.searchProducts.meta.to != this.props.searchProducts.meta.total) {
+        if (this.props.searchProducts.meta.to != this.props.searchProducts.meta.total && this.props.searchProducts.meta.total > 0) {
             return (
                 <div style={{ 'text-align': 'center' }}>
                     <Divider hidden />
@@ -75,23 +73,30 @@ class Search extends Component {
         if (_.isEmpty(this.props.searchProducts)) {
             return <div>Loading...</div>
         }
-        //console.log(this.props.searchProducts);
+
         return (
             <div class={style.search}>
                 <BreadCrumb />
                 <Segment basic textAlign='center'>
                     <Container>
                         <div class={style.filter}>
-                            <FilterWithCheckBox passData={this.state.type} />
+                            <FilterWithCheckBox passData={this.state.param} />
                         </div>
                     </Container>
                 </Segment>
                 <Segment basic>
                     <Container>
-                        <div style={{ 'font-size': '1.5em', 'color': '#767676' }}>
-                            <strong>{this.props.searchProducts.meta.total}</strong><span> ditemukan berdasarkan filter</span>
-                            <Divider hidden />
-                        </div>
+                        {this.props.searchProducts.meta.total > 0 ?
+                            <div style={{ 'font-size': '1.5em', 'color': '#767676' }}>
+                                <strong>{this.props.searchProducts.meta.total}</strong><span> ditemukan berdasarkan filter</span>
+                                <Divider hidden />
+                            </div>
+                            :
+                            <div style={{ 'font-size': '1.5em', 'color': '#767676', 'text-align': 'center', 'padding': '3em 0' }}>
+                                <span>Pencarian Cargo Tidak Ditemukan</span>
+                                <Divider hidden />
+                            </div>
+                        }
                         <Grid columns={1} stackable>
                             {this.renderProducts()}
                         </Grid>

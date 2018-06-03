@@ -1,0 +1,14 @@
+.username {
+    background: transparent !important;
+    border:1px solid #fff !important;
+}
+.username > div, .username > i{
+    color:#fff !important;
+}
+.username a{
+    color: #767676 !important;
+}
+.username > div > div:hover > a{
+    color: #4183c4 !important;
+    font-weight: 700 !important;
+}

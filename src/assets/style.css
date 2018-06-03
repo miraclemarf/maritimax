@@ -9,3 +9,13 @@
 .product-main .thumb-slide .slick-slide:last-child{
     margin-right: 0;
 }
+.form-nego label{
+    color: #535353 !important;
+}
+.form-nego small{
+    color: #DBDBDB;
+}
+.form-nego .w-margin .field{
+    margin-bottom: 0;
+
+}
