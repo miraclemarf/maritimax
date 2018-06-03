@@ -46,7 +46,7 @@ class Register extends Component {
         return (
             <Transition visible={visible} animation='slide left' duration={500}>
                 <div>
-                    <Form name="register" onSubmit={this.handleSubmit}>
+                    <Form autoComplete="off" name="register" onSubmit={this.handleSubmit}>
                         <p style={{ "color": "#fff", "margin": "0", "text-align": "center", "font-size": "1.2em" }}>
                             Create <b>Maritimax Account</b>
                         </p>

@@ -73,7 +73,7 @@ export default class FilterWithIcon extends Component {
       { "value": "4", "text": "Tools" }
     ]
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form autoComplete="off" onSubmit={this.handleSubmit}>
         <Container>
           <Grid centered padded>
             <Grid.Row centered>

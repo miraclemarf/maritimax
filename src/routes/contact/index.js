@@ -21,7 +21,7 @@ export default class Contact extends Component {
                             <Divider clearing hidden />
                             <Divider clearing hidden />
                         </div>
-                        <Form>
+                        <Form autoComplete="off">
                             <Grid columns={2} stackable style={{ 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' }}>
                                 <Grid.Column width={8}>
                                     <div>

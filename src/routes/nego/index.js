@@ -88,7 +88,7 @@ class Nego extends Component {
                 <div style={{ 'padding-top': '5.5em', 'background-color': '#F4F4F4', 'border-bottom': '1px solid #DBDBDB' }}>
                     <Segment style={{ 'padding': '0' }} basic>{ /*SINGLE PROMO*/}
                         <Container style={{ 'margin': '4em 0' }}>
-                            <Form className={'form-nego'} onSubmit={this.handleSubmit}>
+                            <Form autoComplete="off" className={'form-nego'} onSubmit={this.handleSubmit}>
                                 <Grid columns={2} stackable>
                                     <Grid.Column width={11}>
                                         <h2 style={{ 'color': '#535353' }}>{'Contact Details'}</h2>

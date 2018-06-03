@@ -47,7 +47,7 @@ class Login extends Component {
 
             <Transition visible={visible} animation='slide left' duration={150}>
                 <div>
-                    <Form name="form" onSubmit={this.handleSubmit}>
+                    <Form autoComplete="off" name="form" onSubmit={this.handleSubmit}>
                         <Form.Field className={style.field}>
                             <Input icon='user' iconPosition='left' type="email" name="username" onChange={this.handleChange} placeholder='Email' autocomplete="off" />
                         </Form.Field>
