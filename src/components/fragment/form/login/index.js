@@ -65,7 +65,7 @@ class Login extends Component {
                     </Form>
                     <Divider style={{ "border-top-color": "#fff", "border-bottom": "0", "margin-left": "25px", "margin-right": "25px" }} />
                     <p style={{ "text-align": "center", "color": "#fff", "margin": "0" }}>
-                        Dont Have Account ? <b onClick={() => handleToogle('test')} > Register</b>
+                        Dont Have Account ? <b onClick={() => handleToogle('test')} style={{ 'cursor': 'pointer' }}> Register</b>
                     </p>
                     <Divider hidden />
                 </div>
