@@ -25,18 +25,22 @@ class About extends Component {
             <div style={{ 'padding-top': '5em', 'background-color': '#F4F4F4', 'border-bottom': '1px solid #DBDBDB' }}>
                 <Segment basic textAlign='center'>{ /*SINGLE PROMO*/}
                     <Container>
-                        <Header as="h1" content="Simply booking with us" />
                         <Divider hidden />
-                        <Image fluid src="https://loremflickr.com/1060/423/business?random=123" />
+                        <Header as="h1" content="About us" />
                         <Divider hidden />
                         <p style={{ 'font-size': '1em', 'text-align': 'left' }}>
-                            Nulla nec ligula porta, elementum nibh eget, pretium nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum sem turpis, ut pellentesque velit vehicula in. In hac habitasse platea dictumst. Donec varius nunc sit amet ullamcorper iaculis. Sed euismod in dui ac iaculis. Suspendisse ultricies quis nunc a sodales. Donec auctor id urna eget auctor. Integer placerat elementum diam, non mattis justo viverra ac.
+                            Maritimax adalah sebuah online media store partner bagi stakeholder perkapalan, meningkatkan awareness, membantu user mengevaluasi value proportion yang ditawarkan, dan mengedukasi cara-cara sewa dan jual-beli kapal. Maritimax menghubungkan pemilik dan penyewa atau penjual dan pembeli secara langsung tanpa broker, sekaligus menjadi media penghubung jangka panjang antar komunitas pemilik, penyewa, penjual, dan calon pembeli kapal.
                         </p>
-                        <Divider hidden />
-                        <Image fluid src="https://loremflickr.com/1060/423/tanker?random=424" />
+                        <Header as="h1" content="Why us" />
                         <Divider hidden />
                         <p style={{ 'font-size': '1em', 'text-align': 'left' }}>
-                            Nulla nec ligula porta, elementum nibh eget, pretium nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum sem turpis, ut pellentesque velit vehicula in. In hac habitasse platea dictumst. Donec varius nunc sit amet ullamcorper iaculis. Sed euismod in dui ac iaculis. Suspendisse ultricies quis nunc a sodales. Donec auctor id urna eget auctor. Integer placerat elementum diam, non mattis justo viverra ac.
+                            <p class="MsoNoSpacing" style="text-align:justify">1.<span style="white-space: pre;">	</span>AMAN – Kami memverifikasi identitas dan alamat semua pihak yang beriklan di situs ini. Kami juga menerapkan prosedur untuk memastikan mereka memberikan layanan yang baik. Dengan demikian, transaksi Anda dipastikan aman.</p>
+
+                            <p class="MsoNoSpacing" style="text-align:justify">2.<span style="white-space:pre">	</span>UPDATE – Data-data kapal dan muatan akan terus diperbarui oleh tim kami. Kami menghapus iklan apabila telah terjadi transaksi.</p>
+
+                            <p class="MsoNoSpacing" style="text-align:justify">3.<span style="white-space:pre">	</span>EFISIEN – Kami menginformasikan harga pasar yang tepat dan ideal dalam sewa dan jual-beli kapal, sekaligus mengurangi peranan broker dalam sistem konvensional sewa dan jual-beli kapal.</p>
+
+                            <p class="MsoNoSpacing" style="text-align:justify">4.<span style="white-space: pre;">	</span>CEPAT DAN MUDAH – Kami menyediakan informasi pemilik dan penyewa atau penjual dan pembeli secara langsung melalui online. Transaksi lebih mudah dalam genggaman tangan Anda.</p>
                         </p>
                     </Container>
                 </Segment>

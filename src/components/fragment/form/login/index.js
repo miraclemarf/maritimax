@@ -1,8 +1,10 @@
 import { h, Component } from 'preact'
-import { Button, Checkbox, Form, Image, Input, Divider, Icon, Transition } from 'semantic-ui-react'
+import { Button, Divider, Label, Icon, Transition } from 'semantic-ui-react'
+import { Form, Input } from 'formsy-semantic-ui-react';
 import { connect } from 'react-redux'
 import { login } from '../../../../actions'
 import style from "./style";
+import { required, email } from 'redux-form-validators'
 
 class Login extends Component {
     constructor(props) {
@@ -20,6 +22,7 @@ class Login extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onValidSubmit = this.onValidSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -38,6 +41,15 @@ class Login extends Component {
         }
     }
 
+    onValidSubmit(formData) {
+        this.setState({ submitted: true });
+        const { username, password } = this.state;
+        const { dispatch } = this.props;
+        if (username && password) {
+            dispatch(login(username, password));
+        }
+    }
+
     render() {
         //const { username, password, submitted } = this.state;
         const visible = this.props.visible
@@ -47,12 +59,19 @@ class Login extends Component {
 
             <Transition visible={visible} animation='slide left' duration={150}>
                 <div>
-                    <Form autoComplete="off" name="form" onSubmit={this.handleSubmit}>
+                    <Form autoComplete="off" name="form" onValidSubmit={this.onValidSubmit}>
                         <Form.Field className={style.field}>
-                            <Input icon='user' iconPosition='left' type="email" name="username" onChange={this.handleChange} placeholder='Email' autocomplete="off" />
+                            <Input required icon='user' iconPosition='left' type="email" name="username" onChange={this.handleChange} placeholder='Email' validations="isEmail" autocomplete="off"
+                                errorLabel={<Label color="red" pointing />} validationErrors={{
+                                    isEmail: 'Email is invalid',
+                                    isDefaultRequiredValue: 'Email is Required',
+                                }} />
                         </Form.Field>
                         <Form.Field className={style.field}>
-                            <Input icon='lock' iconPosition='left' type="password" name="password" onChange={this.handleChange} placeholder='Password' />
+                            <Input required icon='lock' iconPosition='left' type="password" name="password" onChange={this.handleChange} placeholder='Password'
+                                errorLabel={<Label color="red" pointing />} validationErrors={{
+                                    isDefaultRequiredValue: 'Password is Required',
+                                }} />
                         </Form.Field>
                         <Divider hidden />
                         <Button fluid style={{ 'color': '#0577cb', 'background': 'white' }} type='submit'>LOGIN</Button>

@@ -8,24 +8,37 @@ const Footer = (props) => (
             <Container>
                 <Grid columns={3} stackable>
                     <Grid.Row>
-                        <Grid.Column width={3}>
+                        <Grid.Column width={4}>
                             <Header as='h4' content='Company' style={{ 'color': '#343434' }} />
                             <Divider hidden />
                             <p style={{ 'color': '#868686', 'line-height': '28px' }}>
-                                Jl.taman sari 2 no 56<br />
-                                Jakarta Barat, DKI Jakarta 11640<br />
-                                0813110xx516<br />
-                                Jam Kerja : 9AM - 5PM
+                                E-mail: maritimaxcom@gmail.com <br />
+                                Address: Jl. Bendi Besar No. 12, Jakarta Selatan 12240<br />
+                                CP: +62 812 1569 2727
                             </p>
                         </Grid.Column>
-                        <Grid.Column width={3}>
+                        <Grid.Column width={4}>
                             <Header as='h4' content='Useful Links' style={{ 'color': '#343434' }} />
                             <Divider hidden />
                             <p style={{ 'color': '#868686', 'line-height': '28px' }}>
-                                Travel<br /> Safe Stay<br /> Healthy<br /> Flight Monitor<br /> Booking List<br /> Lost Lugage<br /> World Clock
+                                <a href="http://hubla.dephub.go.id/Default.aspx" target="_blank">Dirjen Hubla</a><br />
+                                <a href="https://www.pelindo1.co.id/id/Default.aspx" target="_blank">Pelindo I</a><br />
+                                <a href="http://www.indonesiaport.co.id/" target="_blank">Pelindo II</a><br />
+                                <a href="https://www.pelindo.co.id/" target="_blank">Pelindo III</a><br />
+                                <a href="http://www.beacukai.go.id/" target="_blank">Bea Cukai</a><br />
+                                <a href="http://www.pajak.go.id/" target="_blank">Pajak</a><br />
                             </p>
                         </Grid.Column>
-                        <Grid.Column floated='right' width={5} textAlign='right'>
+                        <Grid.Column width={4}>
+                            <Header as='h4' content='News Source' style={{ 'color': '#343434' }} />
+                            <Divider hidden />
+                            <p style={{ 'color': '#868686', 'line-height': '28px' }}>
+                                <a href="http://www.insa-id.org/" target="_blank">E-Maritim</a><br />
+                                <a href="https://maritimenews.id/" target="_blank">Maritime News</a><br />
+                                <a href="https://jurnalmaritim.com/" target="_blank">Jurnal Maritim</a><br />
+                            </p>
+                        </Grid.Column>
+                        <Grid.Column floated='right' width={4} textAlign='right'>
                             <Divider hidden />
                             <Button style={{
                                 'color': '#fff', 'background': '#0577cb', 'min-width': '210px', 'font-weight': '400'
