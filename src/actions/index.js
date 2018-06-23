@@ -15,7 +15,7 @@ export const POST_BOOKING = 'post_booking';
 
 const HOST_NAME = window && window.location && window.location.hostname;
 const BASE_API = `http://${HOST_NAME}:3001`;
-const PROD_API = 'http://maritimax.com/api';
+const PROD_API = 'http://siapayangnanya.com/api';
 
 export function fetch_news() {
   const request = axios.get(`${PROD_API}/posts/paginate/3`);
