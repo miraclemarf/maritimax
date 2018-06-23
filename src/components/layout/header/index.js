@@ -24,7 +24,7 @@ class Header extends Component {
         'background-color': '#0577cb'
       }} fixed='top' inverted secondary>
         <Container>
-          <Menu.Item as='a' header>
+          <Menu.Item as='a' href='/' header>
             <Image src='/assets/images/logo2.svg' as='a' size='small' to='/' />
           </Menu.Item>
           <Responsive as={Menu.Menu} position='right' minWidth={992}>
