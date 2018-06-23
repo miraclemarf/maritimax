@@ -2,9 +2,10 @@ import { h, Component } from 'preact';
 import { BrowserRoute, Link } from 'react-router-dom';
 import { history } from '../../../helpers';
 import LoginModal from '../../fragment/loginModal';
-import { Container, Menu, Button, Image, Dropdown } from 'semantic-ui-react';
+import { Container, Menu, Image, Dropdown, Responsive, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux'
 import { get_user } from '../../../actions'
+import HamburgerMenu from './hamburgerMenu';
 import style from './style';
 
 class Header extends Component {
@@ -18,7 +19,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.user)
     return (
       <Menu style={{
         'background-color': '#0577cb'
@@ -27,7 +27,7 @@ class Header extends Component {
           <Menu.Item as='a' header>
             <Image src='/assets/images/logo2.svg' as='a' size='small' to='/' />
           </Menu.Item>
-          <Menu.Menu position='right'>
+          <Responsive as={Menu.Menu} position='right' minWidth={992}>
             <Menu.Item> <Link to="/">Home</Link></Menu.Item>
             <Menu.Item>   <a href="/search?booking_type=charter">Penyewaan</a></Menu.Item>
             <Menu.Item>   <a href="/search?booking_type=buy">Jual Beli</a></Menu.Item>
@@ -51,7 +51,11 @@ class Header extends Component {
                   </Dropdown>
                 </Menu.Item>
             }
-          </Menu.Menu>
+          </Responsive>
+
+          <Responsive as={Menu.Menu} position='right' maxWidth={768}>
+            <HamburgerMenu userData={this.props.user.userData != undefined ? this.props.user.userData.name : ''} />
+          </Responsive>
         </Container>
       </Menu >
     );

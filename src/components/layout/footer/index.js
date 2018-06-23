@@ -73,7 +73,7 @@ const Footer = (props) => (
             <Container>
                 <List horizontal inverted divided>
                     <List.Item style={{ 'border-color': 'rgba(255,255,255,1)' }}>© Copyright 2018 MARITIMAX. All Rights Reserved</List.Item>
-                    <List.Item as='a' href='#'>TERMS & CONDITIONS</List.Item>
+                    <List.Item as='a' href='/terms-condition'>TERMS & CONDITIONS</List.Item>
                 </List>
             </Container>
         </Segment>

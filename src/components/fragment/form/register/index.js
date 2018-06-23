@@ -1,5 +1,6 @@
 import { h, Component } from 'preact'
-import { Button, Checkbox, Form, Input, Divider, Icon, Transition } from 'semantic-ui-react'
+import { Button, Divider, Label, Icon, Transition } from 'semantic-ui-react'
+import { Form, Input } from 'formsy-semantic-ui-react';
 import { connect } from 'react-redux'
 import { register } from '../../../../actions'
 import style from "./style";
@@ -21,6 +22,7 @@ class Register extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onValidSubmit = this.onValidSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -39,6 +41,14 @@ class Register extends Component {
         }
 
     }
+    onValidSubmit(formData) {
+        this.setState({ submitted: true });
+        const { username, email, password } = this.state;
+        const { dispatch } = this.props;
+        if (username && email && password) {
+            dispatch(register(username, email, password));
+        }
+    }
     //state = { open: false }
 
     render() {
@@ -46,19 +56,26 @@ class Register extends Component {
         return (
             <Transition visible={visible} animation='slide left' duration={500}>
                 <div>
-                    <Form autoComplete="off" name="register" onSubmit={this.handleSubmit}>
+                    <Form autoComplete="off" name="register" onValidSubmit={this.onValidSubmit}>
                         <p style={{ "color": "#fff", "margin": "0", "text-align": "center", "font-size": "1.2em" }}>
                             Create <b>Maritimax Account</b>
                         </p>
                         <Divider hidden />
                         <Form.Field className={style.field}>
-                            <Input icon='user' iconPosition='left' type="text" name="username" onChange={this.handleChange} placeholder='Username' autocomplete="off" />
+                            <Input required icon='user' iconPosition='left' type="text" name="username" onChange={this.handleChange} placeholder='Username' autocomplete="off" errorLabel={<Label color="red" pointing />} validationErrors={{
+                                isDefaultRequiredValue: 'Username is Required',
+                            }} />
                         </Form.Field>
                         <Form.Field className={style.field}>
-                            <Input icon='mail' iconPosition='left' type="email" name="email" onChange={this.handleChange} placeholder='Email' autocomplete="off" />
+                            <Input required icon='mail' iconPosition='left' type="email" name="email" onChange={this.handleChange} placeholder='Email' autocomplete="off" validations="isEmail" errorLabel={<Label color="red" pointing />} validationErrors={{
+                                isEmail: 'Email is invalid',
+                                isDefaultRequiredValue: 'Email is Required',
+                            }} />
                         </Form.Field>
                         <Form.Field className={style.field}>
-                            <Input icon='lock' iconPosition='left' type="password" name="password" onChange={this.handleChange} placeholder='Password' />
+                            <Input required icon='lock' iconPosition='left' type="password" name="password" onChange={this.handleChange} placeholder='Password' errorLabel={<Label color="red" pointing />} validationErrors={{
+                                isDefaultRequiredValue: 'Password is Required',
+                            }} />
                         </Form.Field>
                         <Divider hidden />
                         <Button fluid style={{ 'color': '#0577cb', 'background': 'white' }} type='submit'>Create New a Account</Button>
@@ -66,7 +83,7 @@ class Register extends Component {
                         <Button fluid color='google plus'><Icon name='google' /> Register with <b>Google</b></Button>
                         <Divider style={{ "margin": ".5em 0" }} hidden />
                         <p style={{ "color": "#fff", "margin": "0", "font-size": ".88em" }}>
-                            By creating an account, you agree to our <b>terms of service</b>
+                            By creating an account, you agree to our <a href="/terms-condition" style={{ 'color': '#fff', 'font-weight': '700' }}>terms of service</a>
                         </p>
                         <Divider hidden />
                     </Form>

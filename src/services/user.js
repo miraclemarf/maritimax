@@ -13,7 +13,7 @@ function login(username, password) {
         client_id = '2',
         scope = '*';
 
-    const DO = 'http://siapayangnanya.com';
+    const DO = 'http://maritimax.com';
     var formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
@@ -56,7 +56,7 @@ function logout() {
     localStorage.removeItem('user');
 }
 function getUser() {
-    const DO = 'http://siapayangnanya.com';
+    const DO = 'http://maritimax.com';
 
     return axios.get(`${DO}/api/user`, {
         headers: authHeader()
@@ -65,7 +65,7 @@ function getUser() {
 
 function register(username, email, password) {
 
-    const DO = 'http://siapayangnanya.com';
+    const DO = 'http://maritimax.com';
     var formData = new FormData();
     formData.append('name', username);
     formData.append('email', email);
