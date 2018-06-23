@@ -54,7 +54,7 @@ class Header extends Component {
           </Responsive>
 
           <Responsive as={Menu.Menu} position='right' maxWidth={768}>
-            <HamburgerMenu userData={this.props.user.userData != undefined ? this.props.user.userData.name : ''} />
+            <HamburgerMenu userData={this.props.user.userData} />
           </Responsive>
         </Container>
       </Menu >

@@ -31,6 +31,7 @@ export default class HamburgerMenu extends Component {
                     'position': 'absolute',
                     'left': '0',
                     'top': '78px',
+                    'width': visible ? '100%' : 'auto',
                     'height': '300px'
                 }}>
                     <Sidebar as={Menu} animation='overlay' direction='top' visible={visible} inverted style={{
@@ -51,7 +52,7 @@ export default class HamburgerMenu extends Component {
                                     </Menu.Item>
                                     :
                                     <Menu.Item>
-                                        <Dropdown className={style.username} text={userData} floating button>
+                                        <Dropdown className={style.username} text={userData != undefined ? userData.name : ''} floating button>
                                             <Dropdown.Menu>
                                                 {/* <Dropdown.Item>Important</Dropdown.Item> */}
                                                 {/* <Dropdown.Item><a href="/user/booking">Booking</a></Dropdown.Item> */}
