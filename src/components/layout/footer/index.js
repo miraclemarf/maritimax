@@ -40,7 +40,7 @@ const Footer = (props) => (
                         </Grid.Column>
                         <Grid.Column floated='right' width={5} textAlign='right'>
                             <Divider hidden />
-                            <Button style={{
+                            <Button as='a' href='/contact' style={{
                                 'color': '#fff', 'background': '#0577cb', 'min-width': '210px', 'font-weight': '400'
                             }}>
                                 <Icon inverted style={{ 'opactiy': '1' }} name='mail outline' size='large' /> Request Vessel Email
