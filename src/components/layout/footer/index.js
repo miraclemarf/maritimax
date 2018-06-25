@@ -29,7 +29,7 @@ const Footer = (props) => (
                                 <a href="http://www.pajak.go.id/" target="_blank">Pajak</a><br />
                             </p>
                         </Grid.Column>
-                        <Grid.Column width={4}>
+                        <Grid.Column width={3}>
                             <Header as='h4' content='News Source' style={{ 'color': '#343434' }} />
                             <Divider hidden />
                             <p style={{ 'color': '#868686', 'line-height': '28px' }}>
@@ -38,7 +38,7 @@ const Footer = (props) => (
                                 <a href="https://jurnalmaritim.com/" target="_blank">Jurnal Maritim</a><br />
                             </p>
                         </Grid.Column>
-                        <Grid.Column floated='right' width={4} textAlign='right'>
+                        <Grid.Column floated='right' width={5} textAlign='right'>
                             <Divider hidden />
                             <Button style={{
                                 'color': '#fff', 'background': '#0577cb', 'min-width': '210px', 'font-weight': '400'

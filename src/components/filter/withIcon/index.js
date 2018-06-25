@@ -76,7 +76,7 @@ export default class FilterWithIcon extends Component {
       <Form autoComplete="off" onSubmit={this.handleSubmit}>
         <Container>
           <Grid centered padded>
-            <Grid.Row centered>
+            <Grid.Row className={style.rowIcon} centered>
               <Grid.Column mobile={16} tablet={4} computer={2}>
                 <Form.Field >
                   <Button as="a" inverted value='buy' style={this.state.booking_type === 'buy' ? { 'background-color': '#0577CB' } : null} className={style.mainTypeBtn} onClick={this.toggleClass} >
@@ -112,7 +112,7 @@ export default class FilterWithIcon extends Component {
             </Grid.Row>
           </Grid>
         </Container>
-        <Segment style={{ "margin-left": "2.5em", "margin-right": "2.5em" }}>
+        <Segment className={style.formFilter}>
           <Form.Group>
             <Form.Field control={Input} name='description' className={style.inputNoBorder} fluid icon="search" iconPosition="left" action="Search" width={16}
               placeholder="Terlusuri berdasarkan jenis kargo atau lokasi" onChange={this.handleChange} />
@@ -121,7 +121,7 @@ export default class FilterWithIcon extends Component {
           <Form.Group>
             <Label basic size={'large'} className={style.lblPlain} content='Fiter Berdasarkan:' />
           </Form.Group>
-          <Form.Group>
+          <Form.Group className={style.collInput}>
             <Form.Field width={3}>
               <Dropdown
                 selection name='cargo_model_id' placeholder="Model Vessel" options={ddModel} style={{ minWidth: "4em" }} onChange={this.handleChange} />
@@ -131,8 +131,10 @@ export default class FilterWithIcon extends Component {
                 selection name='charter_type_id' placeholder="Type Charter" options={ddCharter} style={{ minWidth: "4em" }} onChange={this.handleChange} />
             </Form.Field>
 
-            <DatePicker name='available_date' selected={this.state.available_date} onChange={this.handleChangeDate} placeholderText="Date"
-            />
+            <Form.Field className={style.dpicker} width={3}>
+              <DatePicker name='available_date' selected={this.state.available_date} onChange={this.handleChangeDate} placeholderText="Date"
+              />
+            </Form.Field>
             <Form.Field width={3}>
               <Dropdown
                 selection

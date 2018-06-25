@@ -54,3 +54,17 @@
 	background-color: #767676 !important;
 
 }
+@media only screen and (max-width: 600px)  {
+	.chkbox{
+		position: relative !important;
+		right: 0 !important;
+		margin-bottom: .5em !important
+	}
+	.collInput > div{
+		margin: .5em 0 !important;
+	}
+	.dpicker > div > div, 
+	.dpicker > div > div > div{
+		display: block !important;
+	}
+}

@@ -30,3 +30,24 @@
 	color: #fff !important;
 	border-radius: 4px !important;
 }
+@media only screen and (min-width: 600px)  {
+	.formFilter{
+		max-width: 90% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+}
+
+@media only screen and (max-width: 480px)  {
+	.rowIcon > div{	
+		padding: 0 !important;
+		margin: .5em 0 !important;
+	}
+	.collInput > div{
+		margin: .5em 0 !important;
+	}
+	.dpicker > div > div, 
+	.dpicker > div > div > div{
+		display: block !important;
+	}
+}

@@ -110,7 +110,7 @@ export default class FilterWithCheckBox extends Component {
                     <Form.Group>
                         <Label basic size={'large'} className={style.lblPlain} content='Fiter Berdasarkan:' />
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group className={style.collInput}>
                         <Form.Field width={3}>
                             <Dropdown defaultValue={this.props.passData.cargo_model_id}
                                 selection name='cargo_model_id' placeholder="Model Vessel" options={ddModel} style={{ minWidth: "4em" }} onChange={this.handleChange} />
@@ -119,8 +119,10 @@ export default class FilterWithCheckBox extends Component {
                             <Dropdown defaultValue={this.props.passData.charter_type_id}
                                 selection name='charter_type_id' placeholder="Type Charter" options={ddCharter} style={{ minWidth: "4em" }} onChange={this.handleChange} />
                         </Form.Field>
-                        <DatePicker name='available_date' selected={this.state.available_date} onChange={this.handleChangeDate} placeholderText="Date"
-                        />
+                        <Form.Field className={style.dpicker} width={3}>
+                            <DatePicker name='available_date' selected={this.state.available_date} onChange={this.handleChangeDate} placeholderText="Date"
+                            />
+                        </Form.Field>
                         <Form.Field width={3}>
                             <Dropdown
                                 selection defaultValue={this.props.passData.city}
