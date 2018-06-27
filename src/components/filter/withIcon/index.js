@@ -1,14 +1,16 @@
 import { h, Component } from 'preact';
+import { connect } from 'react-redux';
+import { get_modelvessel, get_chartertype } from '../../../actions/actions_dropdown';
 import style from './style';
 import { history } from '../../../helpers';
 import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Segment, Divider, Dropdown } from 'semantic-ui-react';
-
+import _ from 'lodash';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-export default class FilterWithIcon extends Component {
+class FilterWithIcon extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +31,33 @@ export default class FilterWithIcon extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleClass = this.toggleClass.bind(this);
   };
+  componentDidMount() {
+    this.props.get_modelvessel();
+    this.props.get_chartertype();
+  }
+  mapModelVessel() {
+    const objModel = this.props.filterModel;
+
+    var objNew = objModel.map(function (o) {
+      return Object.assign({
+        value: o.id,
+        text: o.name
+      }, _.omit(o, 'id', 'name'));
+    });
+    return objNew;
+  }
+
+  mapCharterType() {
+    const objCharter = this.props.filterCharter;
+
+    var objNew = objCharter.map(function (o) {
+      return Object.assign({
+        value: o.id,
+        text: o.name
+      }, _.omit(o, 'id', 'name'));
+    });
+    return objNew;
+  }
   //state = {};
   toggleClass(e) {
     const currentState = this.state.active;
@@ -59,19 +88,10 @@ export default class FilterWithIcon extends Component {
   }
 
   render() {
+
     const { booking_type, city, active } = this.state;
-    const ddModel = [
-      { "value": "1", "text": "Cargo Vessle" },
-      { "value": "2", "text": "Container Ship" },
-      { "value": "3", "text": "Tanker" },
-      { "value": "4", "text": "Reefer Ship" }
-    ]
-    const ddCharter = [
-      { "value": "1", "text": "Kapal" },
-      { "value": "2", "text": "Service" },
-      { "value": "3", "text": "Spareparts" },
-      { "value": "4", "text": "Tools" }
-    ]
+    const ddModel = this.props.filterModel != undefined ? this.mapModelVessel() : []
+    const ddCharter = this.props.filterCharter != undefined ? this.mapCharterType() : []
     return (
       <Form autoComplete="off" onSubmit={this.handleSubmit}>
         <Container>
@@ -122,38 +142,65 @@ export default class FilterWithIcon extends Component {
             <Label basic size={'large'} className={style.lblPlain} content='Fiter Berdasarkan:' />
           </Form.Group>
           <Form.Group className={style.collInput}>
-            <Form.Field width={3}>
-              <Dropdown
-                selection name='cargo_model_id' placeholder="Model Vessel" options={ddModel} style={{ minWidth: "4em" }} onChange={this.handleChange} />
-            </Form.Field>
-            <Form.Field width={3}>
-              <Dropdown
-                selection name='charter_type_id' placeholder="Type Charter" options={ddCharter} style={{ minWidth: "4em" }} onChange={this.handleChange} />
-            </Form.Field>
-
-            <Form.Field className={style.dpicker} width={3}>
-              <DatePicker name='available_date' selected={this.state.available_date} onChange={this.handleChangeDate} placeholderText="Date"
-              />
-            </Form.Field>
-            <Form.Field width={3}>
-              <Dropdown
-                selection
-                placeholder="City" name="city" options={[{ value: "", text: "--Choose One--" }, { value: "Jakarta", text: "Jakarta" }, { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }, { value: "Makasar", text: "Makasar" }]} onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Field width={3}>
-              <Form.Field control={Input} name='available_capacity' placeholder="Kapasitas (Kg)" onChange={this.handleChange} />
-            </Form.Field>
-            <Form.Field width={3}>
-              <Dropdown
-                selection name='year_build' placeholder="Tahun" options={[{ value: "", text: "--Choose One--" }, { value: "2018", text: "2018" }, { value: "2017", text: "2017" }, { value: "2016", text: "2016" }, { value: "2015", text: "2015" }]}
-                style={{ minWidth: "4em" }} onChange={this.handleChange} />
-            </Form.Field>
+            <Grid container stackable columns={'equal'}>
+              <Grid.Row>
+                <Grid.Column>
+                  <Form.Field>
+                    <Dropdown compact
+                      selection name='cargo_model_id' placeholder="Model Vessel" options={ddModel} onChange={this.handleChange} />
+                  </Form.Field>
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Field>
+                    <Dropdown compact
+                      selection name='charter_type_id' placeholder="Type Charter" options={ddCharter} onChange={this.handleChange} />
+                  </Form.Field>
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Field className={style.dpicker}>
+                    <DatePicker name='available_date' selected={this.state.available_date} onChange={this.handleChangeDate} placeholderText="Date"
+                    />
+                  </Form.Field>
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Field>
+                    <Dropdown compact
+                      selection
+                      placeholder="City" name="city" options={[{ value: "", text: "--Choose One--" }, { value: "Jakarta", text: "Jakarta" }, { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }, { value: "Makasar", text: "Makasar" }]} onChange={this.handleChange}
+                    />
+                  </Form.Field>
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Field>
+                    <Form.Field control={Input} name='available_capacity' placeholder="Kapasitas (Kg)" onChange={this.handleChange} />
+                  </Form.Field>
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Field>
+                    <Dropdown compact
+                      selection name='year_build' placeholder="Tahun" options={[{ value: "", text: "--Choose One--" }, { value: "2018", text: "2018" }, { value: "2017", text: "2017" }, { value: "2016", text: "2016" }, { value: "2015", text: "2015" }]}
+                      onChange={this.handleChange} />
+                  </Form.Field>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+            <Divider hidden />
           </Form.Group>
-          <Divider hidden />
         </Segment>
         <Divider hidden />
       </Form>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    filterModel: state.filter.model,
+    filterCharter: state.filter.charter
+  };
+}
+
+export default connect(mapStateToProps, {
+  get_modelvessel,
+  get_chartertype
+})(FilterWithIcon);

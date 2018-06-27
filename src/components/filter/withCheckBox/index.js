@@ -1,5 +1,7 @@
 import { h, Component } from 'preact';
 import style from './style';
+import { connect } from 'react-redux';
+import { get_modelvessel, get_chartertype } from '../../../actions/actions_dropdown';
 import { history } from '../../../helpers';
 import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Checkbox, Divider, Dropdown } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
@@ -7,7 +9,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-export default class FilterWithCheckBox extends Component {
+class FilterWithCheckBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,6 +38,34 @@ export default class FilterWithCheckBox extends Component {
         else {
             this.setState({ available_date: null })
         }
+
+        this.props.get_modelvessel();
+        this.props.get_chartertype();
+    }
+    mapModelVessel() {
+        const objModel = this.props.filterModel;
+
+        var objNew = objModel.map(function (o) {
+            return Object.assign({
+                value: o.id,
+                text: o.name
+            }, _.omit(o, 'id', 'name'));
+        });
+        objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
+        return objNew;
+    }
+
+    mapCharterType() {
+        const objCharter = this.props.filterCharter;
+
+        var objNew = objCharter.map(function (o) {
+            return Object.assign({
+                value: o.id,
+                text: o.name
+            }, _.omit(o, 'id', 'name'));
+        });
+        objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
+        return objNew;
     }
     toggleClass(e) {
         const currentState = this.state.active;
@@ -144,3 +174,14 @@ export default class FilterWithCheckBox extends Component {
         )
     }
 }
+function mapStateToProps(state) {
+    return {
+        filterModel: state.filter.model,
+        filterCharter: state.filter.charter
+    };
+}
+
+export default connect(mapStateToProps, {
+    get_modelvessel,
+    get_chartertype
+})(FilterWithCheckBox);
