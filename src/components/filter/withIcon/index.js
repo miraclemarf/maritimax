@@ -44,6 +44,7 @@ class FilterWithIcon extends Component {
         text: o.name
       }, _.omit(o, 'id', 'name'));
     });
+    objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
     return objNew;
   }
 
@@ -56,6 +57,7 @@ class FilterWithIcon extends Component {
         text: o.name
       }, _.omit(o, 'id', 'name'));
     });
+    objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
     return objNew;
   }
   //state = {};
