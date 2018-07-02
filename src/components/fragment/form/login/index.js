@@ -2,7 +2,7 @@ import { h, Component } from 'preact'
 import { Button, Divider, Label, Icon, Transition } from 'semantic-ui-react'
 import { Form, Input } from 'formsy-semantic-ui-react';
 import { connect } from 'react-redux'
-import { login } from '../../../../actions'
+import { login, googleLogin } from '../../../../actions'
 import { GoogleLogin } from 'react-google-login';
 import style from "./style";
 import { required, email } from 'redux-form-validators'
@@ -52,7 +52,9 @@ class Login extends Component {
     }
 
     responseGoogle(response) {
-        console.log(response);
+        if (response & response.accessToken) {
+            dispatch(googleLogin(response.accessToken));
+        }
     }
 
     render() {
