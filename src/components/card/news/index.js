@@ -1,5 +1,6 @@
 import { Card, Image, Divider, Label } from 'semantic-ui-react';
 import style from './style';
+import slugify from 'slugify';
 import Truncate from 'react-truncate';
 
 const CardNews = (props) => (
@@ -22,7 +23,11 @@ const CardNews = (props) => (
           {props.body}
         </Truncate>
       </p>
-      <a href="/news/detail">Read More</a>
+      <a href={"/news/" + props.id + "/" + slugify(props.title, {
+        replacement: '-',    // replace spaces with replacement
+        remove: /[$*_+~.()'"!\-:@?]/g,        // regex to remove characters
+        lower: true          // result in lower case
+      })}>Read More</a>
     </Card.Content>
   </Card>
 );

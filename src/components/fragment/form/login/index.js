@@ -3,6 +3,7 @@ import { Button, Divider, Label, Icon, Transition } from 'semantic-ui-react'
 import { Form, Input } from 'formsy-semantic-ui-react';
 import { connect } from 'react-redux'
 import { login } from '../../../../actions'
+import { GoogleLogin } from 'react-google-login';
 import style from "./style";
 import { required, email } from 'redux-form-validators'
 
@@ -50,6 +51,10 @@ class Login extends Component {
         }
     }
 
+    responseGoogle(response) {
+        console.log(response);
+    }
+
     render() {
         //const { username, password, submitted } = this.state;
         const visible = this.props.visible
@@ -76,7 +81,14 @@ class Login extends Component {
                         <Divider hidden />
                         <Button fluid style={{ 'color': '#0577cb', 'background': 'white' }} type='submit'>LOGIN</Button>
                         <Divider style={{ "margin": ".5em 0" }} hidden />
-                        <Button fluid color='google plus'><Icon name='google' /> Sign in with <b>Google</b></Button>
+                        <GoogleLogin
+                            clientId={'442332255212-vaehsnvf1k2vl4fpp4gavkttbljb3f5t.apps.googleusercontent.com'}
+                            onSuccess={this.responseGoogle}
+                            onFailure={this.responseGoogle}
+                            style={{ 'display': 'block', 'width': '100%', 'background': 'rgb(209, 72, 54)', 'color': '#fff', 'border-radius': '4px', 'border': 'transparent', 'padding': '10px 0', 'cursor': 'pointer' }}
+                        >
+                            <Icon name='google' /> Sign in with <b>Google</b>
+                        </GoogleLogin>
                         <Divider style={{ "margin": ".5em 0" }} hidden />
                         <p style={{ "text-align": "center", "color": "#fff", "margin": "0" }}>
                             Forgot Password?
