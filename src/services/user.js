@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const userService = {
     login,
+    googleLogin,
     logout,
     register,
     getUser
@@ -102,10 +103,6 @@ function register(username, email, password) {
 }
 
 function googleLogin(token) {
-    const client_secret = 'gxnuzxi3o2zWSscjPzX4Xr5AlK6TVl4W4c6DOvHe',
-        client_id = '2',
-        scope = '*';
-
     const DO = 'http://maritimax.com';
     var formData = new FormData();
     formData.append('google-token', token);
