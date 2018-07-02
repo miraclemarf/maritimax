@@ -52,9 +52,9 @@ class Login extends Component {
     }
 
     responseGoogle(response) {
-        if (response & response.accessToken) {
-            dispatch(googleLogin(response.accessToken));
-        }
+        this.setState({ submitted: true });
+        const { dispatch } = this.props;
+        dispatch(googleLogin(response.accessToken));
     }
 
     render() {
