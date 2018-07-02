@@ -24,6 +24,7 @@ class Login extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onValidSubmit = this.onValidSubmit.bind(this);
+        this.responseGoogle = this.responseGoogle.bind(this);
     }
 
     handleChange(e) {
