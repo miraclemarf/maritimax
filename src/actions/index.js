@@ -11,11 +11,13 @@ export const FETCH_PRODUCTS = 'fetch_products';
 export const SEARCH_PRODUCTS = 'search_products';
 export const SEARCHMORE_PRODUCTS = 'searchmore_products';
 export const GET_PRODUCT = 'get_product';
+export const GET_NEWS = 'get_news';
 export const POST_BOOKING = 'post_booking';
 
 const HOST_NAME = window && window.location && window.location.hostname;
 const BASE_API = `http://${HOST_NAME}:3001`;
-const PROD_API = 'http://siapayangnanya.com/api';
+const PROD_API = 'http://maritimax.com/api';
+const LOCAL_API = 'http://localhost:8000/api';
 
 export function fetch_news() {
   const request = axios.get(`${PROD_API}/posts/paginate/3`);
@@ -51,7 +53,6 @@ export function search_products(param, page) {
   if (param.available_date != undefined) {
     date = moment(param.available_date).format('YYYY-MM-DD') + ' 00:00:00';
   }
-  console.log(date);
   const request = axios.get(`${PROD_API}/cargos/filter`, {
     params: {
       booking_type: param.booking_type,
@@ -76,6 +77,27 @@ export function login(username, password) {
   return dispatch => {
     dispatch(request({ username }));
     userService.login(username, password)
+      .then(
+        user => {
+          dispatch(success(user));
+          location.reload();
+        },
+        error => {
+          dispatch(failure(error));
+          //dispatch(alertActions.error(error));
+        }
+      );
+  };
+
+  function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+  function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+export function googleLogin(token) {
+  return dispatch => {
+    dispatch(request({ token }));
+    userService.googleLogin(token)
       .then(
         user => {
           dispatch(success(user));
@@ -157,4 +179,12 @@ export function post_booking(formBody) {
     payload: request
   }
 
+}
+
+export function get_news(id) {
+  const request = axios.get(`${PROD_API}/posts/${id}`);
+  return {
+    type: GET_NEWS,
+    payload: request
+  };
 }
