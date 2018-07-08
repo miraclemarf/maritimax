@@ -11,6 +11,9 @@ class NewsDetail extends Component {
         this.props.get_news(id);
     }
     render() {
+        if (_.isEmpty(this.props.news)) {
+            return <div>Loading...</div>
+        }
         return (
             <div style={{ 'padding-top': '5.5em', 'background-color': '#fff', 'border-bottom': '1px solid #DBDBDB' }}>
                 <Segment style={{ 'padding': '0' }} basic>{ /*SINGLE PROMO*/}
