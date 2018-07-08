@@ -14,14 +14,14 @@ class NewsDetail extends Component {
         return (
             <div style={{ 'padding-top': '5.5em', 'background-color': '#fff', 'border-bottom': '1px solid #DBDBDB' }}>
                 <Segment style={{ 'padding': '0' }} basic>{ /*SINGLE PROMO*/}
-                    <Image fluid src={this.props.news.data.img_cover} />
+                    <Image fluid src={this.props.news.img_cover} />
                     <Container>
                         <Divider hidden />
-                        <Header style={{ 'color': '#343434', 'margin-bottom': '0' }} textAlign="left" as="h1" content={this.props.news.data.title} />
-                        <span style={{ 'font-weight': '700', 'font-size': '1.3em', 'color': '#0577CB' }}>{this.props.news.data.category_name}</span>
+                        <Header style={{ 'color': '#343434', 'margin-bottom': '0' }} textAlign="left" as="h1" content={this.props.news.title} />
+                        <span style={{ 'font-weight': '700', 'font-size': '1.3em', 'color': '#0577CB' }}>{this.props.news.category_name}</span>
 
                         <p style={{ 'font-size': '1em', 'color': '#535353', 'margin-top': '15px' }}>
-                            {this.props.news.data.body}
+                            {this.props.news.body}
                         </p>
                         <Divider hidden />
                     </Container>
