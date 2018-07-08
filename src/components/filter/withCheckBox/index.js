@@ -1,9 +1,8 @@
 import { h, Component } from 'preact';
 import style from './style';
 import { connect } from 'react-redux';
-import { get_modelvessel, get_chartertype } from '../../../actions/actions_dropdown';
-import { history } from '../../../helpers';
-import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Checkbox, Divider, Dropdown } from 'semantic-ui-react';
+import { get_modelvessel, get_chartertype, get_cities } from '../../../actions/actions_dropdown';
+import { Form, Input, Label, Radio, Checkbox, Divider, Dropdown } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -41,6 +40,7 @@ class FilterWithCheckBox extends Component {
 
         this.props.get_modelvessel();
         this.props.get_chartertype();
+        this.props.get_cities();
     }
     mapModelVessel() {
         const objModel = this.props.filterModel;
@@ -51,7 +51,7 @@ class FilterWithCheckBox extends Component {
                 text: o.name
             }, _.omit(o, 'id', 'name'));
         });
-        objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
+        objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
         return objNew;
     }
 
@@ -64,7 +64,19 @@ class FilterWithCheckBox extends Component {
                 text: o.name
             }, _.omit(o, 'id', 'name'));
         });
-        objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
+        objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
+        return objNew;
+    }
+    mapCities() {
+        const objCities = this.props.filterCities;
+
+        var objNew = objCities.map(function (o) {
+            return Object.assign({
+                value: o.name,
+                text: o.name
+            }, _.omit(o, 'name'));
+        });
+        objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
         return objNew;
     }
     toggleClass(e) {
@@ -85,7 +97,6 @@ class FilterWithCheckBox extends Component {
         const cargo_model_id = this.state.cargo_model_id != '' ? `&cargo_model_id=${this.state.cargo_model_id}` : '';
         const available_capacity = this.state.available_capacity != '' ? `&available_capacity=${this.state.available_capacity}` : '';
         const year_build = this.state.year_build != '' ? `&year_build=${this.state.year_build}` : '';
-        console.log(`/search?${booking_type}${city}${description}${available_date}${charter_type_id}${cargo_model_id}${available_capacity}${year_build}`)
         window.location.href = `/search?${booking_type}${city}${description}${available_date}${charter_type_id}${cargo_model_id}${available_capacity}${year_build}`;
 
     }
@@ -105,20 +116,9 @@ class FilterWithCheckBox extends Component {
             { key: 'products', text: 'Products', value: 'products' },
         ]
 
-        const ddModel = [
-            { "value": "", "text": "--Choose One--" },
-            { "value": "1", "text": "Cargo Vessle" },
-            { "value": "2", "text": "Container Ship" },
-            { "value": "3", "text": "Tanker" },
-            { "value": "4", "text": "Reefer Ship" }
-        ]
-        const ddCharter = [
-            { "value": "", "text": "--Choose One--" },
-            { "value": "1", "text": "Kapal" },
-            { "value": "2", "text": "Service" },
-            { "value": "3", "text": "Spareparts" },
-            { "value": "4", "text": "Tools" }
-        ]
+        const ddModel = this.props.filterModel != undefined ? this.mapModelVessel() : []
+        const ddCharter = this.props.filterCharter != undefined ? this.mapCharterType() : []
+        const ddCities = this.props.filterCities != undefined ? this.mapCities() : []
         return (
             <div class={style.bgwhite}>
 
@@ -142,11 +142,11 @@ class FilterWithCheckBox extends Component {
                     </Form.Group>
                     <Form.Group className={style.collInput}>
                         <Form.Field width={3}>
-                            <Dropdown defaultValue={this.props.passData.cargo_model_id}
+                            <Dropdown defaultValue={this.props.passData.cargo_model_id != undefined ? parseInt(this.props.passData.cargo_model_id) : undefined}
                                 selection name='cargo_model_id' placeholder="Model Vessel" options={ddModel} style={{ minWidth: "4em" }} onChange={this.handleChange} />
                         </Form.Field>
                         <Form.Field width={3}>
-                            <Dropdown defaultValue={this.props.passData.charter_type_id}
+                            <Dropdown defaultValue={this.props.passData.charter_type_id != undefined ? parseInt(this.props.passData.charter_type_id) : undefined}
                                 selection name='charter_type_id' placeholder="Type Charter" options={ddCharter} style={{ minWidth: "4em" }} onChange={this.handleChange} />
                         </Form.Field>
                         <Form.Field className={style.dpicker} width={3}>
@@ -155,8 +155,8 @@ class FilterWithCheckBox extends Component {
                         </Form.Field>
                         <Form.Field width={3}>
                             <Dropdown
-                                selection defaultValue={this.props.passData.city}
-                                placeholder="City" name="city" options={[{ value: "", text: "--Choose One--" }, { value: "Jakarta", text: "Jakarta" }, { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }, { value: "Makasar", text: "Makasar" }]}
+                                search selection defaultValue={this.props.passData.city}
+                                placeholder="City" name="city" options={ddCities}
                                 style={{ minWidth: "4em" }} onChange={this.handleChange}
                             />
                         </Form.Field>
@@ -177,11 +177,13 @@ class FilterWithCheckBox extends Component {
 function mapStateToProps(state) {
     return {
         filterModel: state.filter.model,
-        filterCharter: state.filter.charter
+        filterCharter: state.filter.charter,
+        filterCities: state.filter.cities
     };
 }
 
 export default connect(mapStateToProps, {
     get_modelvessel,
-    get_chartertype
+    get_chartertype,
+    get_cities
 })(FilterWithCheckBox);

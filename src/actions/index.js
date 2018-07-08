@@ -13,6 +13,7 @@ export const SEARCHMORE_PRODUCTS = 'searchmore_products';
 export const GET_PRODUCT = 'get_product';
 export const GET_NEWS = 'get_news';
 export const POST_BOOKING = 'post_booking';
+export const POST_REQUEST = 'post_request';
 
 const HOST_NAME = window && window.location && window.location.hostname;
 const BASE_API = `http://${HOST_NAME}:3001`;
@@ -173,6 +174,17 @@ export function post_booking(formBody) {
   formBody.date = moment(formBody.date).format('YYYY-MM-DD') + ' 00:00:00';
   const request = axios.post(`${PROD_API}/booking/process`, formBody, {
     headers: authHeader()
+  })
+  return {
+    type: POST_BOOKING,
+    payload: request
+  }
+
+}
+
+export function post_request(formBody) {
+  const request = axios.post(`${PROD_API}/booking/request`, formBody).then(function (response) {
+    window.location.href = '/';
   })
   return {
     type: POST_BOOKING,

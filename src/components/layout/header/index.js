@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import { BrowserRoute, Link } from 'react-router-dom';
-import { history } from '../../../helpers';
 import LoginModal from '../../fragment/loginModal';
 import { Container, Menu, Image, Dropdown, Responsive, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux'

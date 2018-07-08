@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { connect } from 'react-redux';
-import { get_modelvessel, get_chartertype } from '../../../actions/actions_dropdown';
+import { get_modelvessel, get_chartertype, get_cities } from '../../../actions/actions_dropdown';
 import style from './style';
 import { history } from '../../../helpers';
 import { Form, Input, Button, Select, Label, Radio, Image, Grid, Container, Segment, Divider, Dropdown } from 'semantic-ui-react';
@@ -34,6 +34,7 @@ class FilterWithIcon extends Component {
   componentDidMount() {
     this.props.get_modelvessel();
     this.props.get_chartertype();
+    this.props.get_cities();
   }
   mapModelVessel() {
     const objModel = this.props.filterModel;
@@ -44,7 +45,7 @@ class FilterWithIcon extends Component {
         text: o.name
       }, _.omit(o, 'id', 'name'));
     });
-    objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
+    objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
     return objNew;
   }
 
@@ -57,7 +58,19 @@ class FilterWithIcon extends Component {
         text: o.name
       }, _.omit(o, 'id', 'name'));
     });
-    objNew = _.concat({ "value": "", "text": "--Choose One--" }, objNew)
+    objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
+    return objNew;
+  }
+  mapCities() {
+    const objCities = this.props.filterCities;
+
+    var objNew = objCities.map(function (o) {
+      return Object.assign({
+        value: o.name,
+        text: o.name
+      }, _.omit(o, 'name'));
+    });
+    objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
     return objNew;
   }
   //state = {};
@@ -94,6 +107,7 @@ class FilterWithIcon extends Component {
     const { booking_type, city, active } = this.state;
     const ddModel = this.props.filterModel != undefined ? this.mapModelVessel() : []
     const ddCharter = this.props.filterCharter != undefined ? this.mapCharterType() : []
+    const ddCities = this.props.filterCities != undefined ? this.mapCities() : []
     return (
       <Form autoComplete="off" onSubmit={this.handleSubmit}>
         <Container>
@@ -167,8 +181,9 @@ class FilterWithIcon extends Component {
                 <Grid.Column>
                   <Form.Field>
                     <Dropdown compact
-                      selection
-                      placeholder="City" name="city" options={[{ value: "", text: "--Choose One--" }, { value: "Jakarta", text: "Jakarta" }, { value: "Bandung", text: "Bandung" }, { value: "Surabaya", text: "Surabaya" }, { value: "Makasar", text: "Makasar" }]} onChange={this.handleChange}
+                      search selection
+                      placeholder="City" name="city" options={ddCities}
+                      style={{ minWidth: "4em" }} onChange={this.handleChange}
                     />
                   </Form.Field>
                 </Grid.Column>
@@ -198,11 +213,13 @@ class FilterWithIcon extends Component {
 function mapStateToProps(state) {
   return {
     filterModel: state.filter.model,
-    filterCharter: state.filter.charter
+    filterCharter: state.filter.charter,
+    filterCities: state.filter.cities
   };
 }
 
 export default connect(mapStateToProps, {
   get_modelvessel,
-  get_chartertype
+  get_chartertype,
+  get_cities
 })(FilterWithIcon);

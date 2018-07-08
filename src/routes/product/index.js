@@ -51,7 +51,9 @@ class Product extends Component {
                 return (<Button as={'a'} href={'/product/detail/' + this.props.product.id + '/negotiate'} fluid style={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '8px', 'max-width': '90%' }} >NEGOTIATE</Button>);
             }
         } else {
-            return (<Button disabled fluid style={{ 'background-color': '#DBDBDB', 'color': '#fff', 'margin-bottom': '8px', 'max-width': '90%', 'cursor': 'not-allowed' }} >NEGOTIATE</Button>);
+            return (<LoginModal textBtn={'NEGOTIATE'} styleBtn={{
+                'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '8px', 'width': '90%'
+            }} />)
         }
 
     }

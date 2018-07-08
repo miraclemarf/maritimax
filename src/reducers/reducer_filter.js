@@ -1,5 +1,5 @@
 
-import { GET_CHARTERTYPE, GET_MODELVESSEL } from '../actions/actions_dropdown';
+import { GET_CHARTERTYPE, GET_MODELVESSEL, GET_CITIES } from '../actions/actions_dropdown';
 
 export default function (state = {}, action) {
     switch (action.type) {
@@ -12,6 +12,11 @@ export default function (state = {}, action) {
             return {
                 ...state,
                 model: action.payload.data
+            }
+        case GET_CITIES:
+            return {
+                ...state,
+                cities: action.payload.data
             }
         default:
             return state;
