@@ -7,3 +7,4 @@ package-lock.json
 semantic
 semantic.json
 app-prod.json
+preact.config.js

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from '../../preact.config.js';
 
 import moment from 'moment';
 import { userService } from '../services';
@@ -15,20 +16,17 @@ export const GET_NEWS = 'get_news';
 export const POST_BOOKING = 'post_booking';
 export const POST_REQUEST = 'post_request';
 
-const HOST_NAME = window && window.location && window.location.hostname;
-const BASE_API = `http://${HOST_NAME}:3001`;
-const PROD_API = 'http://maritimax.com/api';
-const LOCAL_API = 'http://localhost:8000/api';
+const BASE_API = app_apiurl + '/api';
 
 export function fetch_news() {
-  const request = axios.get(`${PROD_API}/posts/paginate/3`);
+  const request = axios.get(`${BASE_API}/posts/paginate/3`);
   return {
     type: FETCH_NEWS,
     payload: request
   };
 }
 export function fetch_allnews(page) {
-  const request = axios.get(`${PROD_API}/posts/paginate/9`, {
+  const request = axios.get(`${BASE_API}/posts/paginate/9`, {
     params: {
       page: page
     }
@@ -40,7 +38,7 @@ export function fetch_allnews(page) {
 }
 
 export function fetch_products() {
-  const request = axios.get(`${PROD_API}/cargos/filter`, {
+  const request = axios.get(`${BASE_API}/cargos/filter`, {
     params: { limit: '3' }
   });
   return {
@@ -54,7 +52,7 @@ export function search_products(param, page) {
   if (param.available_date != undefined) {
     date = moment(param.available_date).format('YYYY-MM-DD') + ' 00:00:00';
   }
-  const request = axios.get(`${PROD_API}/cargos/filter`, {
+  const request = axios.get(`${BASE_API}/cargos/filter`, {
     params: {
       booking_type: param.booking_type,
       city: param.city,
@@ -163,7 +161,7 @@ export function get_user() {
 }
 
 export function get_product(id) {
-  const request = axios.get(`${PROD_API}/cargo/${id}`);
+  const request = axios.get(`${BASE_API}/cargo/${id}`);
   return {
     type: GET_PRODUCT,
     payload: request
@@ -172,7 +170,7 @@ export function get_product(id) {
 
 export function post_booking(formBody) {
   formBody.date = moment(formBody.date).format('YYYY-MM-DD') + ' 00:00:00';
-  const request = axios.post(`${PROD_API}/booking/process`, formBody, {
+  const request = axios.post(`${BASE_API}/booking/process`, formBody, {
     headers: authHeader()
   })
   return {
@@ -183,7 +181,7 @@ export function post_booking(formBody) {
 }
 
 export function post_request(formBody) {
-  const request = axios.post(`${PROD_API}/booking/request`, formBody).then(function (response) {
+  const request = axios.post(`${BASE_API}/booking/request`, formBody).then(function (response) {
     window.location.href = '/';
   })
   return {
@@ -194,7 +192,7 @@ export function post_request(formBody) {
 }
 
 export function get_news(id) {
-  const request = axios.get(`${PROD_API}/posts/${id}`);
+  const request = axios.get(`${BASE_API}/posts/${id}`);
   return {
     type: GET_NEWS,
     payload: request

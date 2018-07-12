@@ -9,8 +9,10 @@ export const userService = {
     getUser
 };
 
+const BASE_API = app_apiurl;
+
 function login(username, password) {
-    const client_secret = 'd6dRh1z0bqCibk9XtQRGwzFeHh2P0JlDWnGiUffP',
+    const client_secret = app_client_secret,
         client_id = '2',
         scope = '*';
 
@@ -34,7 +36,7 @@ function login(username, password) {
     };*/
 
     /*'/users/authenticate'*/
-    return fetch(DO + '/oauth/token', requestOptions)
+    return fetch(BASE_API + '/oauth/token', requestOptions)
         .then(response => {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
@@ -59,7 +61,7 @@ function logout() {
 function getUser() {
     const DO = 'http://maritimax.com';
 
-    return axios.get(`${DO}/api/user`, {
+    return axios.get(`${BASE_API}/api/user`, {
         headers: authHeader()
     });
 }
@@ -83,7 +85,7 @@ function register(username, email, password) {
     };*/
 
     /*'/users/authenticate'*/
-    return fetch(DO + '/api/user/register', requestOptions)
+    return fetch(BASE_API + '/api/user/register', requestOptions)
         .then(response => {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
@@ -113,7 +115,7 @@ function googleLogin(token) {
     };
 
     /*'/users/authenticate'*/
-    return fetch(DO + '/api/user/register/google', requestOptions)
+    return fetch(BASE_API + '/api/user/register/google', requestOptions)
         .then(response => {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
