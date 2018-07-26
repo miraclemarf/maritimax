@@ -5,9 +5,10 @@ import { post_booking } from '../../actions';
 import NegoModal from '../../components/fragment/negoModal';
 import style from './style';
 import DatePicker from 'react-datepicker';
+import { get_cities } from '../../actions/actions_dropdown';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Segment, Container, Grid, Header, Divider, Image, Button, Form } from 'semantic-ui-react';
+import { Segment, Container, Grid, Header, Divider, Dropdown, Button, Form } from 'semantic-ui-react';
 
 class Nego extends Component {
     constructor(props) {
@@ -30,9 +31,21 @@ class Nego extends Component {
         //this.bookingConfirm = this.bookingConfirm.bind(this);
         this.closeModal = this.closeModal.bind(this);
     };
+    mapCities() {
+        const objCities = this.props.filterCities;
+        var objNew = objCities.map(function (o) {
+            return Object.assign({
+                value: o.name,
+                text: o.name
+            }, _.omit(o, 'name'));
+        });
+        objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
+        return objNew;
+    }
     componentDidMount() {
         const { id } = this.props.match.params;
         this.props.get_product(id);
+        this.props.get_cities();
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.booking !== this.props.booking) {
@@ -83,6 +96,7 @@ class Nego extends Component {
     }
 
     render() {
+        const ddCities = this.props.filterCities != undefined ? this.mapCities() : []
         if (!_.isEmpty(this.props.auth) && !_.isEmpty(this.props.product)) {
             return (
                 <div style={{ 'padding-top': '5.5em', 'background-color': '#F4F4F4', 'border-bottom': '1px solid #DBDBDB' }}>
@@ -97,7 +111,7 @@ class Nego extends Component {
                                                 <Grid.Row>
                                                     <Grid.Column>
                                                         <div className={'use-caption w-margin'}>
-                                                            <Form.Input name='fullname' onChange={this.handleChange} label='Full Name' />
+                                                            <Form.Input name='fullname' onChange={this.handleChange} label='Full Name' required />
                                                             <small>As on ID Card (without degree or speacial character)</small>
                                                         </div>
                                                     </Grid.Column>
@@ -105,13 +119,13 @@ class Nego extends Component {
                                                 <Grid.Row>
                                                     <Grid.Column width={8}>
                                                         <div className={'use-caption w-margin'}>
-                                                            <Form.Input name='phone_number' onChange={this.handleChange} label='Mobile Number' />
+                                                            <Form.Input name='phone_number' onChange={this.handleChange} label='Mobile Number' required />
                                                             <small>e.g +628127002322</small>
                                                         </div>
                                                     </Grid.Column>
                                                     <Grid.Column width={8}>
                                                         <div className={'use-caption w-margin'}>
-                                                            <Form.Input name='email' onChange={this.handleChange} fluid label='Email' />
+                                                            <Form.Input type="email" name='email' onChange={this.handleChange} fluid label='Email' />
                                                             <small>e.g email@example.com</small>
                                                         </div>
                                                     </Grid.Column>
@@ -119,18 +133,30 @@ class Nego extends Component {
                                                 <Grid.Row>
                                                     <Grid.Column width={8}>
                                                         <div className={'use-caption w-margin'}>
-                                                            <Form.Input name='capacity' onChange={this.handleChange} fluid label='Capacity (Kg)' />
+                                                            <Form.Input required name='capacity' onChange={this.handleChange} fluid label='Capacity (Kg)' />
                                                             <small>Satuan berat dalam Kg</small>
                                                         </div>
                                                     </Grid.Column>
                                                     <Grid.Column width={4}>
                                                         <div className={'use-caption w-margin'}>
-                                                            <Form.Input name='destination_from' onChange={this.handleChange} fluid label='Destination From' />
+                                                            {/* <Form.Input name='destination_from' onChange={this.handleChange} fluid label='Destination From' /> */}
+                                                            <Form.Field>
+                                                                <label for="">Destination From</label>
+                                                                <Dropdown compact
+                                                                    search selection name="destination_from" options={ddCities} onChange={this.handleChange}
+                                                                />
+                                                            </Form.Field>
                                                         </div>
                                                     </Grid.Column>
                                                     <Grid.Column width={4}>
                                                         <div className={'use-caption w-margin'}>
-                                                            <Form.Input name='destination_to' onChange={this.handleChange} fluid label='Destination To' />
+                                                            {/*  <Form.Input name='destination_to' onChange={this.handleChange} fluid label='Destination To' /> */}
+                                                            <Form.Field>
+                                                                <label for="">Destination To</label>
+                                                                <Dropdown compact
+                                                                    search selection name="destination_to" options={ddCities} onChange={this.handleChange}
+                                                                />
+                                                            </Form.Field>
                                                         </div>
                                                     </Grid.Column>
                                                 </Grid.Row>
@@ -258,11 +284,13 @@ function mapStateToProps(state) {
     return {
         auth: state.auth,
         product: state.products,
-        booking: state.booking
+        booking: state.booking,
+        filterCities: state.filter.cities
     };
 }
 
 export default connect(mapStateToProps, {
     get_product,
-    post_booking
+    post_booking,
+    get_cities
 })(Nego);

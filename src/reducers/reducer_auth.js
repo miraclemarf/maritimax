@@ -22,7 +22,10 @@ export default function authentication(state = initialState, action) {
         case userConstants.REGISTER_FAILURE:
             return {};
         case userConstants.LOGIN_FAILURE:
-            return {};
+            return {
+                loggedIn: false,
+                error: action.error
+            };
         case userConstants.LOGOUT:
             return {};
         case userConstants.GET_USER:

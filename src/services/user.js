@@ -78,11 +78,6 @@ function register(username, email, password) {
         method: 'POST',
         body: formData
     };
-    /*const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password,client_id, client_secret, scope })
-    };*/
 
     /*'/users/authenticate'*/
     return fetch(BASE_API + '/api/user/register', requestOptions)

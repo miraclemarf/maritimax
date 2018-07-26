@@ -5,6 +5,7 @@ import ReducerBooking from './reducer_booking';
 import ReducerRequest from './reducer_request';
 import ReducerFilter from './reducer_filter';
 import ReducerAuth from './reducer_auth';
+import ReducerAlert from './reducer_alert';
 import { routerReducer } from 'react-router-redux';
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   booking: ReducerBooking,
   request: ReducerRequest,
   filter: ReducerFilter,
-  router: routerReducer,
+  alert: ReducerAlert,
+  router: routerReducer
 });
 export default rootReducer;

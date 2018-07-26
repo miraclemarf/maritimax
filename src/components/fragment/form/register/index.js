@@ -1,7 +1,9 @@
 import { h, Component } from 'preact'
-import { Button, Divider, Label, Icon, Transition } from 'semantic-ui-react'
+import { Button, Divider, Label, Icon, Transition, Message } from 'semantic-ui-react'
 import { Form, Input } from 'formsy-semantic-ui-react';
 import { connect } from 'react-redux'
+
+import _ from 'lodash';
 import { register } from '../../../../actions'
 import style from "./style";
 
@@ -17,6 +19,8 @@ class Register extends Component {
             email: '',
             password: '',
             submitted: false,
+            error: false,
+            errorMsg: '',
             visible: false
 
         };
@@ -49,6 +53,13 @@ class Register extends Component {
             dispatch(register(username, email, password));
         }
     }
+    componentWillReceiveProps(nextProps) {
+        if (!_.isEmpty(nextProps.error)) {
+            if (!_.isEmpty(nextProps.error.message)) {
+                this.setState({ error: true, errorMsg: nextProps.error.message });
+            }
+        }
+    }
     //state = { open: false }
 
     render() {
@@ -61,6 +72,13 @@ class Register extends Component {
                             Create <b>Maritimax Account</b>
                         </p>
                         <Divider hidden />
+                        {
+                            this.state.error ?
+                                <Message negative>
+                                    <Message.Header>{this.state.errorMsg}</Message.Header>
+                                </Message>
+                                : ''
+                        }
                         <Form.Field className={style.field}>
                             <Input required icon='user' iconPosition='left' type="text" name="username" onChange={this.handleChange} placeholder='Username' autocomplete="off" errorLabel={<Label color="red" pointing />} validationErrors={{
                                 isDefaultRequiredValue: 'Username is Required',
@@ -93,9 +111,9 @@ class Register extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { loggingIn } = state.auth;
+    const { loggingIn, error } = state.auth;
     return {
-        loggingIn
+        loggingIn, error
     };
 }
 

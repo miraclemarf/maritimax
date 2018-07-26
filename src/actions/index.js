@@ -103,7 +103,7 @@ export function googleLogin(token) {
           location.reload();
         },
         error => {
-          dispatch(failure(error));
+          //dispatch(failure(error));
           //dispatch(alertActions.error(error));
         }
       );
@@ -111,7 +111,7 @@ export function googleLogin(token) {
 
   function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
   function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-  function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+  //function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 export function logout() {
   userService.logout();
@@ -125,8 +125,13 @@ export function register(username, email, password) {
     userService.register(username, email, password)
       .then(
         user => {
-          dispatch(success(user));
-          history.push('/');
+          if (user.error != undefined && user.error != '') {
+            dispatch(failure(user));
+          }
+          else {
+            dispatch(success(user));
+            location.reload();
+          }
         },
         error => {
           dispatch(failure(error));
