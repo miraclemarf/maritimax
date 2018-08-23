@@ -29,16 +29,20 @@ export default class ProductMain extends Component {
                     ref={slider => (this.slider1 = slider)}
                 >
                     <div>
-                        <Image fluid src={this.props.image_cargo[0].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[0].img_url + ')' }}>
+                        </div>
                     </div>
                     <div>
-                        <Image fluid src={this.props.image_cargo[1].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[1].img_url + ')' }}>
+                        </div>
                     </div>
                     <div>
-                        <Image fluid src={this.props.image_cargo[2].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[2].img_url + ')' }}>
+                        </div>
                     </div>
                     <div>
-                        <Image fluid src={this.props.image_cargo[3].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[3].img_url + ')' }}>
+                        </div>
                     </div>
                 </Slider>
                 <Slider className={'thumb-slide'}
@@ -50,16 +54,20 @@ export default class ProductMain extends Component {
                     focusOnSelect={true}
                 >
                     <div>
-                        <Image fluid src={this.props.image_cargo[0].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[0].img_url + ')' }}>
+                        </div>
                     </div>
                     <div>
-                        <Image fluid src={this.props.image_cargo[1].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[1].img_url + ')' }}>
+                        </div>
                     </div>
                     <div>
-                        <Image fluid src={this.props.image_cargo[2].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[2].img_url + ')' }}>
+                        </div>
                     </div>
                     <div>
-                        <Image fluid src={this.props.image_cargo[3].img_url} />
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[3].img_url + ')' }}>
+                        </div>
                     </div>
                 </Slider>
                 <Divider hidden />

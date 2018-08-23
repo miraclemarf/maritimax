@@ -19,3 +19,18 @@
     margin-bottom: 0;
 
 }
+
+.sixteen-nine {
+  position: relative;
+}
+.sixteen-nine:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 56.25%;
+}
+.bg-img {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat
+}

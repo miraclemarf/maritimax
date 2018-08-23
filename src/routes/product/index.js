@@ -19,7 +19,7 @@ class Product extends Component {
         this.props.get_product(id);
     }
     renderMainProduct() {
-        if (!_.isEmpty(this.props.auth)) {
+        if (!_.isEmpty(localStorage.getItem('user'))) {
             if (!_.isEmpty(this.props.product)) {
                 return (
                     <ProductMain image_cargo={this.props.product.img_cargos} desc={this.props.product.description} />
@@ -46,7 +46,7 @@ class Product extends Component {
 
     renderBtnNego() {
 
-        if (!_.isEmpty(this.props.auth)) {
+        if (!_.isEmpty(localStorage.getItem('user'))) {
             if (!_.isEmpty(this.props.product)) {
                 return (<Button as={'a'} href={'/product/detail/' + this.props.product.id + '/negotiate'} fluid style={{ 'background-color': '#0577CB', 'color': '#fff', 'margin-bottom': '8px', 'max-width': '90%' }} >NEGOTIATE</Button>);
             }
@@ -67,13 +67,13 @@ class Product extends Component {
             <div style={{ 'padding-top': '5.5em', 'background-color': '#F4F4F4', 'border-bottom': '1px solid #DBDBDB' }}>
                 <Segment style={{ 'padding': '0' }} basic>{ /*SINGLE PROMO*/}
                     <Container style={{ 'margin': '4em 0' }}>
-                        <Grid columns={2} stackable style={!_.isEmpty(this.props.auth) ? { 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' } : ''}>
+                        <Grid columns={2} stackable style={!_.isEmpty(localStorage.getItem('user')) ? { 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' } : ''}>
                             <Grid.Column width={11}>
                                 {this.renderMainProduct()}
 
                             </Grid.Column>
                             <Grid.Column width={5}>
-                                <div style={_.isEmpty(this.props.auth) ? { 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' } : ''}>
+                                <div style={_.isEmpty(localStorage.getItem('user')) ? { 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' } : ''}>
                                     <h2 style={{ 'color': '#0577CB', 'margin-bottom': '0' }}>{this.props.product.name}</h2>
                                     <div style={{ 'margin-bottom': '5px', 'color': '#484848' }}>{this.props.product.cargo_model}</div>
                                     <span style={{ 'color': '#0577CB', 'font-size': '92%', 'font-style': 'italic' }}>{this.props.product.location}, {this.props.product.city}</span>
