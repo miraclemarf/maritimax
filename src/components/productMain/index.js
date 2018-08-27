@@ -19,8 +19,6 @@ export default class ProductMain extends Component {
     }
 
     render() {
-        console.log(this.props.image_cargo);
-
         return (
             <div className={'product-main'}>
                 <Slider
@@ -35,15 +33,15 @@ export default class ProductMain extends Component {
                         </div>
                     </div>
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[1].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[1].img_url) + ')' }}>
                         </div>
                     </div>
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[2].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[2].img_url) + ')' }}>
                         </div>
                     </div>
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[3].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[3].img_url) + ')' }}>
                         </div>
                     </div>
                 </Slider>
@@ -56,19 +54,19 @@ export default class ProductMain extends Component {
                     focusOnSelect={true}
                 >
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[0].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[0].img_url) + ')' }}>
                         </div>
                     </div>
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[1].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[1].img_url) + ')' }}>
                         </div>
                     </div>
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[2].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[2].img_url) + ')' }}>
                         </div>
                     </div>
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[3].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[3].img_url) + ')' }}>
                         </div>
                     </div>
                 </Slider>
