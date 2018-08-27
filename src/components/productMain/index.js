@@ -1,5 +1,6 @@
 import { h, Component } from "preact";
-import { Image, Divider } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react';
+import Markup from 'preact-markup';
 import Slider from "react-slick";
 
 export default class ProductMain extends Component {
@@ -75,7 +76,7 @@ export default class ProductMain extends Component {
                     <h3>General Data (Description)</h3>
                     <Divider style={{ 'margin': '0' }} hidden />
                     <p style={{ 'font-size': '1.1em' }}>
-                        {this.props.desc}
+                        <Markup markup={this.props.desc} type='html' />
                     </p>
                 </div>
             </div>
