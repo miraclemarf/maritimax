@@ -19,6 +19,8 @@ export default class ProductMain extends Component {
     }
 
     render() {
+        console.log(this.props.image_cargo);
+
         return (
             <div className={'product-main'}>
                 <Slider
