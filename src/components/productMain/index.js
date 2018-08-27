@@ -31,7 +31,7 @@ export default class ProductMain extends Component {
                     ref={slider => (this.slider1 = slider)}
                 >
                     <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + this.props.image_cargo[0].img_url + ')' }}>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[0].img_url) + ')' }}>
                         </div>
                     </div>
                     <div>
