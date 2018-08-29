@@ -1,6 +1,8 @@
 import { Card, Image, Icon, Label, Button, Divider } from 'semantic-ui-react';
 import style from './style';
 import Truncate from 'react-truncate';
+
+import Markup from 'preact-markup';
 const CardProduct = (props) => (
   <Card fluid>
     <Card.Content>
@@ -12,7 +14,8 @@ const CardProduct = (props) => (
       </Card.Header>
     </Card.Content>
     <div style={{ 'position': 'relative' }}>
-      <Image fluid src={props.image_cargo} />
+      <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(props.image_cargo) + ')' }}>
+      </div>
       <Button style={{
         'background-color': '#0577CB', 'color': '#fff',
         'position': 'absolute', 'top': '20px', 'right': '0', 'margin-right': '0',
@@ -23,7 +26,7 @@ const CardProduct = (props) => (
       <Card.Description>
         <p className={style.description}>
           <Truncate lines={2}>
-            {props.description}
+            <Markup markup={props.description} type='html' />
           </Truncate>
         </p>
       </Card.Description>

@@ -27,7 +27,10 @@ class Home extends Component {
         });
     }
     renderProducts() {
+        console.log(this.props.products);
         return _.map(this.props.products, products => {
+            console.log(products);
+
             return (
                 <Grid.Column>
                     <CardProduct {...products} />

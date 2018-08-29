@@ -32,7 +32,7 @@ class Search extends Component {
     }
 
     mapProducts() {
-        const productsObj = _.mapKeys(this.props.searchProducts.data, 'id');
+        const productsObj = this.props.searchProducts.data;
 
         _.map(productsObj, product => {
             this.state.products.push(product)

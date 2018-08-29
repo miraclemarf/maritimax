@@ -3,11 +3,14 @@ import style from './style';
 import slugify from 'slugify';
 import Truncate from 'react-truncate';
 
+import Markup from 'preact-markup';
+
 const CardNews = (props) => (
   <Card fluid style={{
     'box-shadow': 'none'
   }}>
-    <Image fluid src={props.img_cover} />
+    <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(props.img_cover) + ')' }}>
+    </div>
     <Card.Content style={{
       'border': 'none',
       'padding-left': '0',
@@ -20,7 +23,7 @@ const CardNews = (props) => (
       </Card.Header>
       <p className={style.description}>
         <Truncate lines={3}>
-          {props.body}
+          <Markup markup={props.body} type='html' />
         </Truncate>
       </p>
       <a href={"/news/" + props.id + "/" + slugify(props.title, {

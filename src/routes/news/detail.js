@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import style from './style';
 import { connect } from 'react-redux';
 import { get_news } from '../../actions';
+import Markup from 'preact-markup';
 import { Segment, Container, Grid, Header, Divider, Image, Button } from 'semantic-ui-react';
 import Promo from '../../components/fragment/promo';
 
@@ -24,7 +25,7 @@ class NewsDetail extends Component {
                         <span style={{ 'font-weight': '700', 'font-size': '1.3em', 'color': '#0577CB' }}>{this.props.news.data.category_name}</span>
 
                         <p style={{ 'font-size': '1em', 'color': '#535353', 'margin-top': '15px' }}>
-                            {this.props.news.data.body}
+                            <Markup markup={this.props.news.data.body} type='html' />
                         </p>
                         <Divider hidden />
                     </Container>

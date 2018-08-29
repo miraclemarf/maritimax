@@ -23,7 +23,8 @@ class News extends Component {
         this.props.fetch_allnews(this.state.page);
     }
     mapNews() {
-        const newsObj = _.mapKeys(this.props.news.data, 'id');
+        //console.log(this.props.news.data);
+        const newsObj = this.props.news.data;
 
         _.map(newsObj, news => {
             this.state.news.push(news)

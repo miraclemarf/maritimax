@@ -6,7 +6,7 @@ export default function (state = {}, action) {
   //console.log(action.type);
   switch (action.type) {
     case FETCH_PRODUCTS:
-      return _.mapKeys(action.payload.data.data, 'id');
+      return action.payload.data.data
     case SEARCH_PRODUCTS:
       return action.payload.data
     case GET_PRODUCT:
