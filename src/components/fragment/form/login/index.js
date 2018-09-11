@@ -93,13 +93,13 @@ class Login extends Component {
                             <Icon name='google' /> Sign in with <b>Google</b>
                         </GoogleLogin>
                         <Divider style={{ "margin": ".5em 0" }} hidden />
-                        <p style={{ "text-align": "center", "color": "#fff", "margin": "0" }}>
+                        <p style={{ "text-align": "center", "color": "#fff", "margin": "0", 'cursor': 'pointer' }} onClick={() => handleToogle('forgot')} >
                             Forgot Password?
                             </p>
                     </Form>
                     <Divider style={{ "border-top-color": "#fff", "border-bottom": "0", "margin-left": "25px", "margin-right": "25px" }} />
                     <p style={{ "text-align": "center", "color": "#fff", "margin": "0" }}>
-                        Dont Have Account ? <b onClick={() => handleToogle('test')} style={{ 'cursor': 'pointer' }}> Register</b>
+                        Dont Have Account ? <b onClick={() => handleToogle('register')} style={{ 'cursor': 'pointer' }}> Register</b>
                     </p>
                     <Divider hidden />
                 </div>

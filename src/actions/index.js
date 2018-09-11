@@ -144,6 +144,26 @@ export function register(username, email, password) {
   function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
+export function forgot_password(email) {
+  return dispatch => {
+    userService.forgotPassword(email)
+      .then(
+        user => {
+          dispatch(success(user));          
+          if(user.error == undefined && user.error == ''){
+            location.reload()
+          }
+        },
+        error => {
+          dispatch(failure(error));
+          
+        }
+      );
+  };
+  function success(user) { return { type: userConstants.FORGOT_PASSWORD_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.FORGOT_PASSWORD_FAILURE, error } }
+}
+
 export function get_user() {
   return dispatch => {
     //dispatch(request({ username }));

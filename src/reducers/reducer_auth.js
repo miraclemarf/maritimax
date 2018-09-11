@@ -21,6 +21,15 @@ export default function authentication(state = initialState, action) {
             };
         case userConstants.REGISTER_FAILURE:
             return {};
+
+        case userConstants.FORGOT_PASSWORD_SUCCESS:
+            return {
+                forgot: action.user
+            };
+        case userConstants.FORGOT_PASSWORD_FAILURE:
+            return {
+                error: action.error
+            };
         case userConstants.LOGIN_FAILURE:
             return {
                 loggedIn: false,

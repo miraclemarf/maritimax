@@ -6,6 +6,7 @@ export const userService = {
     googleLogin,
     logout,
     register,
+    forgotPassword,
     getUser
 };
 
@@ -96,6 +97,30 @@ function register(username, email, password) {
             }
 
             return user;
+        });
+}
+
+function forgotPassword(email) {
+    var formData = new FormData();
+    formData.append('email', email);
+
+    const requestOptions = {
+        method: 'POST',
+        body: formData
+    };
+
+    return fetch(BASE_API + '/api/user/forgot-password', requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(response => {
+            
+            //console.log(response);
+
+            return response;
         });
 }
 

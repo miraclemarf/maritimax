@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 import { Modal, Button, Image, Divider } from 'semantic-ui-react'
 import Login from '../form/login'
 import Register from '../form/register'
+import ForgotPassword from '../form/forgotPassword'
 import style from "./style";
 
 export default class LoginModal extends Component {
@@ -16,7 +17,8 @@ export default class LoginModal extends Component {
             textBtn: this.props.textBtn,
             styleBtn: this.props.styleBtn,
             visibleLogin: true,
-            visibleRegister: false
+            visibleRegister: false,
+            visibleForgot: false,
         };
 
         this.handleToogle = this.handleToogle.bind(this);
@@ -25,7 +27,15 @@ export default class LoginModal extends Component {
 
 
     handleToogle(e) {
-        this.setState({ visibleLogin: false, visibleRegister: true });
+        /* this.setState({ visibleLogin: false, visibleRegister: true }); */
+        if (e==='register'){
+            this.setState({ visibleLogin: false, visibleRegister: true, visibleForgot: false }); 
+        }
+        if (e==='forgot'){
+            this.setState({ visibleLogin: false, visibleRegister: false, visibleForgot: true  }); 
+        }
+        
+        
     }
 
     //state = { open: false }
@@ -35,7 +45,7 @@ export default class LoginModal extends Component {
 
     render() {
         const { loggingIn } = this.props;
-        const { visibleLogin, visibleRegister, open, size } = this.state;
+        const { visibleLogin, visibleRegister,  visibleForgot, open, size } = this.state;
         const handleToogle = this.handleToogle;
         return (
             <div>
@@ -49,6 +59,7 @@ export default class LoginModal extends Component {
                     <Modal.Content style={{ "padding": "0" }}>
                         <Login visible={visibleLogin} handleToogle={handleToogle.bind(this)} />
                         <Register visible={visibleRegister} />
+                        <ForgotPassword visible={visibleForgot} handleToogle={handleToogle.bind(this)} />
                     </Modal.Content>
                 </Modal>
             </div>
