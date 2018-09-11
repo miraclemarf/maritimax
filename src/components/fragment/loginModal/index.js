@@ -41,7 +41,7 @@ export default class LoginModal extends Component {
     //state = { open: false }
 
     show = size => () => this.setState({ size, open: true })
-    close = () => this.setState({ open: false, visibleLogin: true, visibleRegister: false })
+    close = () => this.setState({ open: false, visibleLogin: true, visibleRegister: false, visibleForgot:false })
 
     render() {
         const { loggingIn } = this.props;
