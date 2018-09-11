@@ -150,7 +150,7 @@ export function forgot_password(email) {
       .then(
         user => {
           dispatch(success(user));          
-          if(user.error == undefined && user.error == ''){
+          if(user.error == undefined || user.error == ''){
             location.reload()
           }
         },
