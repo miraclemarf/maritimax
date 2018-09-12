@@ -22,6 +22,7 @@ import Tac from '../../../routes/tac';
 import Contact from '../../../routes/contact';
 import Login from '../../../routes/auth/login';
 import Logout from '../../../routes/auth/logout';
+import ResetPassword from '../../../routes/resetPassword';
 import NotFound from './404.js';
 
 export default class Main extends Component {
@@ -42,11 +43,11 @@ export default class Main extends Component {
             <div>
                 <ConnectedRouter history={history}>
                     <div>
-                        <Route exact path={['/', '/search', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition']} component={Header} />
+                        <Route exact path={['/', '/search', '/reset/password', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition']} component={Header} />
                         <Switch>
                             <Route path="/" exact component={Home} />
                             <Route path="/search" component={Search} />
-
+                            <Route path="/reset/password" component={ResetPassword} />
                             <Route path="/charter" component={ListCharter} />
                             <Route path="/news" exact component={News} />
                             <Route path="/news/:id/:slug" exact component={NewsDetail} />
@@ -66,7 +67,7 @@ export default class Main extends Component {
                         {/* <Profile path="/profile/" user="me" />
                         <Profile path="/profile/:user" /> */}
 
-                        <Route exact path={['/', '/search', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition']} component={Footer} />
+                        <Route exact path={['/', '/search', '/reset/password', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition']} component={Footer} />
                     </div>
                 </ConnectedRouter>
             </div>

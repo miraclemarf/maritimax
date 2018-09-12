@@ -7,6 +7,7 @@ export const userService = {
     logout,
     register,
     forgotPassword,
+    resetPassword,
     getUser
 };
 
@@ -117,9 +118,28 @@ function forgotPassword(email) {
             return response.json();
         })
         .then(response => {
-            
-            //console.log(response);
+            return response;
+        });
+}
 
+function resetPassword(new_password, reset_token) {
+    var formData = new FormData();
+    formData.append('new_password', new_password);
+    formData.append('reset_token', reset_token);
+
+    const requestOptions = {
+        method: 'POST',
+        body: formData
+    };
+
+    return fetch(BASE_API + '/api/user/reset-password', requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(response => {
             return response;
         });
 }

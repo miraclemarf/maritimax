@@ -164,6 +164,27 @@ export function forgot_password(email) {
   function failure(error) { return { type: userConstants.FORGOT_PASSWORD_FAILURE, error } }
 }
 
+export function reset_password(new_password, reset_token) {
+  return dispatch => {
+    userService.resetPassword(new_password, reset_token)
+      .then(
+        user => {
+          
+          dispatch(success(user));          
+          if(user.error == undefined || user.error == ''){
+            location.reload()
+          }
+        },
+        error => {
+          dispatch(failure(error));
+          
+        }
+      );
+  };
+  function success(user) { return { type: userConstants.FORGOT_PASSWORD_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.FORGOT_PASSWORD_FAILURE, error } }
+}
+
 export function get_user() {
   return dispatch => {
     //dispatch(request({ username }));

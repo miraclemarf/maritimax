@@ -1,0 +1,23 @@
+.field i{
+    color: #fff !important;
+    opacity: 1 !important;
+}
+.field input{
+    background: transparent !important;
+    color: #fff !important;
+    border: hidden !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #fff !important;
+}
+.field ::placeholder {
+    color: white !important;
+    opacity: 1 !important; /* Firefox */
+}
+
+.field :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: white !important;
+}
+
+.field ::-ms-input-placeholder { /* Microsoft Edge */
+   color: white !important;
+}
