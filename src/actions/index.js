@@ -172,7 +172,7 @@ export function reset_password(new_password, reset_token) {
           
           dispatch(success(user));          
           if(user.error == undefined || user.error == ''){
-            location.reload()
+            window.location.href = '/';
           }
         },
         error => {
