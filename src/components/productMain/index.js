@@ -18,7 +18,18 @@ export default class ProductMain extends Component {
             nav2: this.slider2
         });
     }
+    renderImg(){
+        const imgMap = this.props.image_cargo;
 
+        return _.map(imgMap, img => {
+            return (
+                <div>
+                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(img.img_url) + ')' }}>
+                        </div>
+                    </div>
+            );
+        });
+    }
     render() {
         return (
             <div className={'product-main'}>
@@ -29,47 +40,17 @@ export default class ProductMain extends Component {
                     swipeToSlide={false}
                     ref={slider => (this.slider1 = slider)}
                 >
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[0].img_url) + ')' }}>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[1].img_url) + ')' }}>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[2].img_url) + ')' }}>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[3].img_url) + ')' }}>
-                        </div>
-                    </div>
+                    {this.renderImg()}
                 </Slider>
                 <Slider className={'thumb-slide'}
                     asNavFor={this.state.nav1}
                     ref={slider => (this.slider2 = slider)}
-                    slidesToShow={4}
+                    slidesToShow={this.props.image_cargo.length}
                     variableWidth={true}
                     swipeToSlide={false}
                     focusOnSelect={true}
                 >
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[0].img_url) + ')' }}>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[1].img_url) + ')' }}>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[2].img_url) + ')' }}>
-                        </div>
-                    </div>
-                    <div>
-                        <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(this.props.image_cargo[3].img_url) + ')' }}>
-                        </div>
-                    </div>
+                     {this.renderImg()}
                 </Slider>
                 <Divider hidden />
                 <div>
