@@ -2,7 +2,9 @@ import { h, Component } from 'preact';
 import style from './style';
 import { connect } from 'react-redux';
 import { post_request } from '../../actions';
-import { Segment, Container, Grid, Divider, Button, Form, Select, TextArea, Checkbox } from 'semantic-ui-react';
+import { Segment, Container, Grid, Divider, Button, Form, Select, TextArea, Checkbox, Message } from 'semantic-ui-react';
+import qs from 'query-string';
+import _ from 'lodash';
 import Promo from '../../components/fragment/promo';
 
 
@@ -16,17 +18,27 @@ class Contact extends Component {
             phone_number: '',
             topic: '',
             question: '',
+            message:false,
             submitted: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     };
-    componentWillReceiveProps(nextProps) {
-        console.log('asd');
+    /* componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         if (nextProps.request !== this.props.request) {
 
             window.location.href = '/';
         }
+    } */
+
+    componentDidMount() {
+        const param = qs.parse(this.props.location.search); 
+        const obj = {success:null}       
+                       
+        if(_.isEqual(param, obj)){
+            this.setState({ message: true });
+        }        
     }
     handleChange(e, props) {
         const { name, value } = props;
@@ -65,7 +77,17 @@ class Contact extends Component {
                             </p>
                             <Divider clearing hidden />
                             <Divider clearing hidden />
+                            {
+                            this.state.message ?
+                                <Message positive>
+                                    <Message.Header>{'Request Vessel berhasil terkirim, Terima kasih'}</Message.Header>
+                                </Message>
+                                : ''
+                        }
+                        <Divider clearing hidden />
+                        <Divider clearing hidden />
                         </div>
+                        
                         <Form autoComplete="off" onSubmit={this.handleSubmit}>
                             <Grid columns={2} stackable style={{ 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' }}>
                                 <Grid.Column width={8}>

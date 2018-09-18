@@ -226,9 +226,9 @@ export function post_booking(formBody) {
 
 }
 
-export function post_request(formBody) {
-  const request = axios.post(`${BASE_API}/booking/request`, formBody).then(function (response) {
-    window.location.href = '/';
+export function post_request(formBody) {  
+  const request = axios.post(`${BASE_API}/booking/request`, formBody).then(function (response) {    
+    window.location.href = '/contact?success';
   })
   return {
     type: POST_BOOKING,

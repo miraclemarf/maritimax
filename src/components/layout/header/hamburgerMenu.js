@@ -38,12 +38,12 @@ export default class HamburgerMenu extends Component {
                         'background-color': '#0577cb'
                     }}>
                         <Sidebar.Pusher>
-                            <Menu.Item> <Link to="/">Home</Link></Menu.Item>
+                            <Menu.Item> <a href="/">Home</a></Menu.Item>
                             <Menu.Item>   <a href="/search?booking_type=charter">Penyewaan</a></Menu.Item>
                             <Menu.Item>   <a href="/search?booking_type=buy">Jual Beli</a></Menu.Item>
                             <Menu.Item>   <a href="/news">News</a></Menu.Item>
-                            <Menu.Item>   <Link to="/about">About Us</Link></Menu.Item>
-                            <Menu.Item>   <Link to="/contact">Contact Us</Link></Menu.Item>
+                            <Menu.Item>   <a href="/about">About Us</a></Menu.Item>
+                            <Menu.Item>   <a href="/contact">Contact Us</a></Menu.Item>
                             {
 
                                 !localStorage.getItem('user') ?
