@@ -33,7 +33,7 @@ export default class ProductMain extends Component {
     }
     render() {
         if (_.isEmpty(this.props.image_cargo)) {
-            return <div></div>
+            return <div class="sixteen-nine bg-img" style="background-image: url(http://www.sangathipl.com/wp-content/uploads/2016/07/no-image-avaliable.jpg);"></div>
         }
         return (
             <div className={'product-main'}>
