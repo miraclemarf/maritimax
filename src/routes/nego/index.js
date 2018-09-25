@@ -32,9 +32,11 @@ class Nego extends Component {
         this.closeModal = this.closeModal.bind(this);
     };
     mapCities() {
-        const objCities = this.props.filterCities.data;        
-        var objNew = _.concat({ "value": "", "text": "Choose One" }, objCities)        
-        return objNew;
+        if (!_.isEmpty(this.props.filterCities)) {
+            const objCities = this.props.filterCities.data;        
+            var objNew = _.concat({ "value": "", "text": "Choose One" }, objCities)        
+            return objNew;
+        }
     }
 
     shouldComponentUpdate(nextProps, nextState) {
