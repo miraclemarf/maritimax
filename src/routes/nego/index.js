@@ -101,7 +101,7 @@ class Nego extends Component {
     }
 
     render() {
-        console.log(this.props.filterCities);
+        console.log(this.props);
         
         if (!_.isEmpty(this.props.auth) && !_.isEmpty(this.props.product)&& !_.isEmpty(this.props.filterCities)) {
             return (
