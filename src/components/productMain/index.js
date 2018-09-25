@@ -2,6 +2,7 @@ import { h, Component } from "preact";
 import { Divider } from 'semantic-ui-react';
 import Markup from 'preact-markup';
 import Slider from "react-slick";
+import _ from 'lodash';
 
 export default class ProductMain extends Component {
     constructor(props) {
@@ -31,6 +32,9 @@ export default class ProductMain extends Component {
         });
     }
     render() {
+        if (_.isEmpty(this.props.image_cargo)) {
+            return <div></div>
+        }
         return (
             <div className={'product-main'}>
                 <Slider
