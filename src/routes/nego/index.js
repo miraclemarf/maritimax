@@ -42,7 +42,7 @@ class Nego extends Component {
         if (this.state.date !== nextState.date) {
             return true;
           }
-       return nextProps.filterCities !== this.props.filterCities;
+       return nextProps.product !== this.props.product;
     }
     
     componentDidMount() {
@@ -198,8 +198,6 @@ class Nego extends Component {
     }
 }
 function mapStateToProps(state) {
-    console.log(state);
-    
     return {
         auth: state.auth,
         product: state.products,
