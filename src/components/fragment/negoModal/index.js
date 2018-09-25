@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { Modal, Divider } from 'semantic-ui-react'
+import { Modal, Divider, Button } from 'semantic-ui-react'
 import style from './style'
 
 export default class NegoModal extends Component {
@@ -29,14 +29,28 @@ export default class NegoModal extends Component {
                             <Divider hidden />
                             <h2>Booking <span style={{ 'font-weight': '400' }}>anda sudah kami terima</span></h2>
                             <Divider hidden />
-                            <p style={{ 'font-size': '1.2em' }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum sem turpis, ut pellentesque velit vehicula in.
-                            </p>
-                            <h2>Rp 25.000.000</h2>
-                            <p style={{ 'font-size': '1.2em' }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum sem turpis, ut pellentesque velit vehicula in. In hac habitasse platea dictumst. Donec varius nunc sit amet ullamcorper iaculis.
-                            </p>
-                            <h2>REK BCA 345345345345</h2>
+                            {
+                                        this.props.price != '-' ?
+                                        <div>
+                                        <p style={{ 'font-size': '1.2em' }}>
+                                            Total tagihan yang harus dibayar sesuai pemesanan adalah :
+                                        </p>
+                                        <h2>Rp {this.props.price}</h2>
+                                        <p style={{ 'font-size': '1.2em' }}>
+                                            Silahkan lakukan transfer ke Rekening bank berikut :
+                                        </p>
+                                        <h2>BCA 8990277142 an Gusti Reza</h2>
+                                    </div>
+                                            : 
+                                            <div>
+                                        <p style={{ 'font-size': '1.2em' }}>
+                                            Terima kasih telah melakukan pemesanan selanjutnya team kami akan melakukan verifikasi data dan akan menghubungi melalui Email dan No Telepon yang sudah Anda berikan.
+                                        </p>
+                                    </div>
+                                    }
+                           
+                           <Divider hidden />
+                           <Button primary size="big" onClick={this.props.close}>Kembali ke Beranda</Button>
                             <Divider hidden />
                             <Divider hidden />
                         </div>

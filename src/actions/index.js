@@ -14,6 +14,7 @@ export const SEARCHMORE_PRODUCTS = 'searchmore_products';
 export const GET_PRODUCT = 'get_product';
 export const GET_NEWS = 'get_news';
 export const POST_BOOKING = 'post_booking';
+export const BOOKING_FAIL = 'booking_fail';
 export const POST_REQUEST = 'post_request';
 
 const BASE_API = app_apiurl + '/api';
@@ -218,11 +219,15 @@ export function post_booking(formBody) {
   formBody.date = moment(formBody.date).format('YYYY-MM-DD') + ' 00:00:00';
   const request = axios.post(`${BASE_API}/booking/process`, formBody, {
     headers: authHeader()
-  })
+  });
   return {
     type: POST_BOOKING,
     payload: request
-  }
+  };
+  
+  
+  function success(data) { return { type: POST_BOOKING, success:data } }
+  function failure(error) { return { type: BOOKING_FAIL, error } }
 
 }
 
