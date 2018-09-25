@@ -39,9 +39,9 @@ class Nego extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        /* if (this.state.date !== nextState.date) {
+        if (this.state.date !== nextState.date) {
             return true;
-          } */
+          }
        return nextProps.filterCities !== this.props.filterCities;
     }
     
@@ -101,7 +101,7 @@ class Nego extends Component {
     }
 
     render() {
-        console.log(this.props);
+        console.log(this.props.product);
         
         if (!_.isEmpty(this.props.auth) && !_.isEmpty(this.props.product)&& !_.isEmpty(this.props.filterCities)) {
             return (
@@ -198,6 +198,8 @@ class Nego extends Component {
     }
 }
 function mapStateToProps(state) {
+    console.log(state);
+    
     return {
         auth: state.auth,
         product: state.products,
