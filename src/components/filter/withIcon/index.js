@@ -62,15 +62,9 @@ class FilterWithIcon extends Component {
     return objNew;
   }
   mapCities() {
-    const objCities = this.props.filterCities;
+    const objCities = this.props.filterCities.data;
 
-    var objNew = objCities.map(function (o) {
-      return Object.assign({
-        value: o.name,
-        text: o.name
-      }, _.omit(o, 'name'));
-    });
-    objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
+    var objNew =  _.concat({ "value": "", "text": "Choose One" }, objCities)
     return objNew;
   }
   //state = {};

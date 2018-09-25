@@ -1,8 +1,8 @@
 import { h, Component } from 'preact';
 import { connect } from 'react-redux';
-import { get_product } from '../../actions';
-import { post_booking } from '../../actions';
+import { get_product, post_booking } from '../../actions';
 import NegoModal from '../../components/fragment/negoModal';
+import ProductSidebar from '../../components/ProductSidebar';
 import style from './style';
 import DatePicker from 'react-datepicker';
 import { get_cities } from '../../actions/actions_dropdown';
@@ -32,16 +32,18 @@ class Nego extends Component {
         this.closeModal = this.closeModal.bind(this);
     };
     mapCities() {
-        const objCities = this.props.filterCities;
-        var objNew = objCities.map(function (o) {
-            return Object.assign({
-                value: o.name,
-                text: o.name
-            }, _.omit(o, 'name'));
-        });
-        objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
+        const objCities = this.props.filterCities.data;        
+        var objNew = _.concat({ "value": "", "text": "Choose One" }, objCities)        
         return objNew;
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.date !== nextState.date) {
+            return true;
+          }
+       return nextProps.filterCities !== this.props.filterCities;
+    }
+    
     componentDidMount() {
         const { id } = this.props.match.params;
         this.props.get_product(id);
@@ -53,11 +55,13 @@ class Nego extends Component {
         }
     }
     handleChangeDate(date) {
+        console.log(date);
+        
         this.setState({ date: date });
     }
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
+    handleChange(e, { name, value }) {
+        this.setState({ ...this.state, [name]: value });
+
     }
 
     handleSubmit(e) {
@@ -96,8 +100,9 @@ class Nego extends Component {
     }
 
     render() {
-        const ddCities = this.props.filterCities != undefined ? this.mapCities() : []
-        if (!_.isEmpty(this.props.auth) && !_.isEmpty(this.props.product)) {
+        console.log(this.props.filterCities);
+        
+        if (!_.isEmpty(this.props.auth) && !_.isEmpty(this.props.product)&& !_.isEmpty(this.props.filterCities)) {
             return (
                 <div style={{ 'padding-top': '5.5em', 'background-color': '#F4F4F4', 'border-bottom': '1px solid #DBDBDB' }}>
                     <Segment style={{ 'padding': '0' }} basic>{ /*SINGLE PROMO*/}
@@ -143,7 +148,7 @@ class Nego extends Component {
                                                             <Form.Field>
                                                                 <label for="">Destination From</label>
                                                                 <Dropdown compact
-                                                                    search selection name="destination_from" options={ddCities} onChange={this.handleChange}
+                                                                    search selection name="destination_from" options={this.mapCities()} onChange={this.handleChange}
                                                                 />
                                                             </Form.Field>
                                                         </div>
@@ -154,7 +159,7 @@ class Nego extends Component {
                                                             <Form.Field>
                                                                 <label for="">Destination To</label>
                                                                 <Dropdown compact
-                                                                    search selection name="destination_to" options={ddCities} onChange={this.handleChange}
+                                                                    search selection name="destination_to" options={this.mapCities()} onChange={this.handleChange}
                                                                 />
                                                             </Form.Field>
                                                         </div>
@@ -174,100 +179,11 @@ class Nego extends Component {
                                         </div>
                                     </Grid.Column>
                                     <Grid.Column width={5}>
-                                        <div style={{ 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' }}>
-                                            <h2 style={{ 'color': '#0577CB', 'margin-bottom': '0' }}>{this.props.product.name}</h2>
-                                            <div style={{ 'margin-bottom': '5px', 'color': '#484848' }}>{this.props.product.cargo_model}</div>
-                                            <span style={{ 'color': '#0577CB', 'font-size': '92%', 'font-style': 'italic' }}>{this.props.product.location}, {this.props.product.city}</span>
-                                            <hr style={{ 'border-color': '#DBDBDB', 'background': 'transparent' }} />
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Model Vessel'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.cargo_model}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Jenis Charter'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.charter_type}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Dimensi'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.dimension + ' cm'}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Lebar'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.width + ' cm'}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Year Built'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.year_build}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Flag'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.flag}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Area of Service'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.area_of_service}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div className={style.left}>
-                                                    <h5>{'Kapasitas Muatan'}</h5>
-                                                </div>
-                                                <div className={style.right}>
-                                                    <h5>{': ' + this.props.product.load_capacity + ' Kg'}</h5>
-                                                </div>
-                                                <Divider hidden clearing />
-                                            </div>
-                                            <div>
-                                                <div>
-                                                    <h2 style={{ 'color': '#0577CB' }}>{"Rp. "}{this.props.product.price}{"/Month"}</h2>
-                                                </div>
-                                                <div style={{ 'font-size': '92%', 'margin-bottom': '10px', 'color': '#535353' }}>
-                                                    {"Available time for charter from " + this.props.product.available_start + " - " + this.props.product.available_end}
-                                                </div>
-                                                <div style={{ 'color': '#484848', 'margin-bottom': '10px' }}>
-                                                    <strong style={{ 'color': '#0577CB' }}>{this.props.product.available_capacity + " Kg"}</strong>{" spaces left, from "}<strong>{this.props.product.load_capacity + " Kg"}</strong>
-                                                </div>
-                                                {this.renderBtnNego()}
+                                        <div style={{ 'background-color': '#fff', 'padding': '2em', 'box-shadow': '0px 3px 6px 0px rgba(0,0,0,0.16)', 'border-radius': '8px' }}>                                        
+                                        <ProductSidebar {...this.props.product} />
+                                        {this.renderBtnNego()}
                                                 <NegoModal open={this.state.openModal} close={this.closeModal} />
-                                                {/* <div style={{ 'font-size': '88%', 'margin-bottom': '10px', 'color': '#535353' }}>
-                                            {"Call for Price if price hidden"}
-                                        </div> */}
-                                            </div>
-                                        </div>
+                                                </div>
                                     </Grid.Column>
                                 </Grid>
                             </Form>

@@ -68,16 +68,17 @@ class FilterWithCheckBox extends Component {
         return objNew;
     }
     mapCities() {
-        const objCities = this.props.filterCities;
+        const objCities = this.props.filterCities.data;
 
-        var objNew = objCities.map(function (o) {
-            return Object.assign({
-                value: o.name,
-                text: o.name
-            }, _.omit(o, 'name'));
-        });
-        objNew = _.concat({ "value": "", "text": "Choose One" }, objNew)
+        var objNew =  _.concat({ "value": "", "text": "Choose One" }, objCities)
         return objNew;
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state.available_date !== nextState.available_date) {
+            return true;
+          }
+       return nextProps.filterCities !== this.props.filterCities;
     }
     toggleClass(e) {
         const currentState = this.state.active;
@@ -161,7 +162,7 @@ class FilterWithCheckBox extends Component {
                             />
                         </Form.Field>
                         <Form.Field width={3}>
-                            <Form.Field control={Input} name='available_capacity' placeholder="Kapasitas (Kg)" value={this.props.passData.available_capacity} />
+                            <Form.Field control={Input} name='available_capacity' placeholder="Kapasitas (Kg)" value={this.props.passData.available_capacity} onChange={this.handleChange} />
                         </Form.Field>
                         <Form.Field width={3}>
                             <Dropdown
