@@ -39,9 +39,9 @@ class Nego extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.state.date !== nextState.date) {
+        /* if (this.state.date !== nextState.date) {
             return true;
-          }
+          } */
        return nextProps.filterCities !== this.props.filterCities;
     }
     
