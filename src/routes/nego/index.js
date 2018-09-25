@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { connect } from 'react-redux';
 import { get_product, post_booking } from '../../actions';
 import NegoModal from '../../components/fragment/negoModal';
-import ProductSidebar from '../../components/ProductSidebar';
+import ProductSidebar from '../../components/productSidebar';
 import style from './style';
 import _ from 'lodash';
 import DatePicker from 'react-datepicker';
