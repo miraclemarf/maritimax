@@ -34,3 +34,24 @@
   background-position: center center;
   background-repeat: no-repeat
 }
+
+.usermenu .ui.vertical.menu .item:before{
+    left: 0;
+    margin: 0 auto
+}
+.usermenu .ui.vertical.menu .item{
+    margin: 0 1.5em;
+    padding: 1em 2px;
+    color: #767676;
+}
+.usermenu .ui.vertical.menu .item:hover,
+.usermenu .ui.vertical.menu .active.item{
+    background: transparent;
+    font-weight: 700;
+    color: #0577CB;
+}
+.usermenu .ui.vertical.menu{
+    padding: 1em 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
+    border-radius: 8px;
+}

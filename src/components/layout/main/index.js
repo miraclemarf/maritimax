@@ -22,6 +22,7 @@ import Tac from '../../../routes/tac';
 import Contact from '../../../routes/contact';
 import Login from '../../../routes/auth/login';
 import Logout from '../../../routes/auth/logout';
+import User from '../../../routes/user';
 import ResetPassword from '../../../routes/resetPassword';
 import NotFound from './404.js';
 
@@ -43,7 +44,7 @@ export default class Main extends Component {
             <div>
                 <ConnectedRouter history={history}>
                     <div>
-                        <Route exact path={['/', '/search', '/reset/password', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition']} component={Header} />
+                        <Route exact path={['/', '/search', '/reset/password', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition', '/user']} component={Header} />
                         <Switch>
                             <Route path="/" exact component={Home} />
                             <Route path="/search" component={Search} />
@@ -61,13 +62,18 @@ export default class Main extends Component {
                                     ? <Login />
                                     : <Redirect to="/" />
                             )} />
+                            <Route exact path="/user" render={() => (
+                                localStorage.getItem('user')
+                                    ? <User />
+                                    : <Redirect to="/" />
+                            )} />
                             <Route path="/logout" exact component={Logout} />
                             <Route component={NotFound} />
                         </Switch>
                         {/* <Profile path="/profile/" user="me" />
                         <Profile path="/profile/:user" /> */}
 
-                        <Route exact path={['/', '/search', '/reset/password', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition']} component={Footer} />
+                        <Route exact path={['/', '/search', '/reset/password', '/news', '/news/:id/:slug', '/product/detail/:id', '/product/detail/:id/negotiate', '/about', '/contact', '/terms-condition', '/user']} component={Footer} />
                     </div>
                 </ConnectedRouter>
             </div>

@@ -69,7 +69,9 @@ class Home extends Component {
                             <Divider clearing hidden />
                         </div>
                         <Grid columns={3} stackable>
+                            <Grid.Row stretched>
                             {this.renderProducts()}
+                            </Grid.Row>
                         </Grid>
                     </Container>
                 </Segment>

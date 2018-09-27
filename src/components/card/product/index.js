@@ -1,4 +1,5 @@
 import { Card, Image, Icon, Label, Button, Divider } from 'semantic-ui-react';
+import _ from 'lodash';
 import style from './style';
 import Truncate from 'react-truncate';
 
@@ -14,8 +15,12 @@ const CardProduct = (props) => (
       </Card.Header>
     </Card.Content>
     <div style={{ 'position': 'relative' }}>
-      <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(props.image_cargo) + ')' }}>
-      </div>
+    {
+    _.isEmpty(props.image_cargo)  ? <div class="sixteen-nine bg-img" style="background-image: url(http://www.sangathipl.com/wp-content/uploads/2016/07/no-image-avaliable.jpg);"></div>
+             :
+            <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(props.image_cargo) + ')' }}></div>
+        
+      }
       <Button style={{
         'background-color': '#0577CB', 'color': '#fff',
         'position': 'absolute', 'top': '20px', 'right': '0', 'margin-right': '0',

@@ -44,7 +44,7 @@ class Header extends Component {
                   <Dropdown className={style.username} text={this.props.user.userData != undefined ? this.props.user.userData.name : ''} floating button>
                     <Dropdown.Menu>
                       {/* <Dropdown.Item>Important</Dropdown.Item> */}
-                      {/* <Dropdown.Item><a href="/user/booking">Booking</a></Dropdown.Item> */}
+                      {/* <Dropdown.Item><a href="/user">Profile</a></Dropdown.Item> */}
                       <Dropdown.Item><a href="/logout">Logout</a></Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

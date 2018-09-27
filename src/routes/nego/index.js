@@ -161,7 +161,7 @@ class Nego extends Component {
                                                     </Grid.Column>
                                                     <Grid.Column width={8}>
                                                         <div className={'use-caption w-margin'}>
-                                                            <Form.Input type="email" name='email' value={this.state.email} onChange={this.handleChange} fluid label='Email' />
+                                                            <Form.Input type="email" name='email' value={this.state.email} onChange={this.handleChange} fluid label='Email' required />
                                                             <small>e.g email@example.com</small>
                                                         </div>
                                                     </Grid.Column>
