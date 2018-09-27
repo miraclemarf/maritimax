@@ -31,7 +31,7 @@ const CardNews = (props) => (
         {props.title}
         </a>
         <Label content={props.category_post} basic
-          style={{ 'display': 'block', 'border': 'none', 'padding': '0', 'color': '#0577CB', 'margin-top': '4px', 'font-size': '.7em' }} />
+          style={{ 'display': 'block', 'border': 'none', 'padding': '0', 'color': 'rgb(52, 52, 52)', 'margin-top': '4px', 'font-size': '.7em' }} />
       </Card.Header>
       <p className={style.description}>
         <Truncate lines={3}>

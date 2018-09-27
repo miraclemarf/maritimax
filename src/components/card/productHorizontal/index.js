@@ -4,7 +4,10 @@ const CardProduct = (props) => (
         <Grid style={{ 'padding': '1em' }} columns={3} stackable>
             <Grid.Column width={4}>
              {
-            _.isEmpty(props.image_cargo)  ? <div class="sixteen-nine bg-img" style="background-image: url(http://www.sangathipl.com/wp-content/uploads/2016/07/no-image-avaliable.jpg);"></div>
+            _.isEmpty(props.image_cargo)  ?
+            <div style={{'overflow':'hidden'}}>
+            <div class="sixteen-nine bg-img" style="background-image: url(http://www.sangathipl.com/wp-content/uploads/2016/07/no-image-avaliable.jpg); transform:scale(1.5)"></div>
+            </div>
                     :
                     <div className={'sixteen-nine bg-img'} style={{ 'background-image': 'url(' + encodeURI(props.image_cargo) + ')' }}></div>
                 
