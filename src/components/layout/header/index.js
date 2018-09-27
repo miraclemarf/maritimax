@@ -20,7 +20,8 @@ class Header extends Component {
   render() {
     return (
       <Menu style={{
-        'background-color': '#0577cb'
+        'background-color': '#0577cb',
+        'box-shadow':' 0px 6px 6px rgba(0,0,0,.16)'
       }} fixed='top' inverted secondary>
         <Container>
           <Menu.Item as='a' href='/' header>
