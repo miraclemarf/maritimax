@@ -48,18 +48,24 @@ const Footer = (props) => (
                             <Divider hidden />
                             <Divider hidden />
                             <List horizontal>
-                                <List.Item>
+                                {/* <List.Item>
                                     <Icon circular style={{ 'background-color': '#0577CB', 'color': '#fff', 'border-color': '#0577CB', 'box-shadow': 'none' }} size='large' name='twitter' />
-                                </List.Item>
+                                </List.Item> */}
                                 <List.Item>
+                                <a href="https://www.instagram.com/maritimaxofficial/" target="_blank">
                                     <Icon circular style={{ 'background-color': '#0577CB', 'color': '#fff', 'border-color': '#0577CB', 'box-shadow': 'none' }} size='large' name='instagram' />
+                                    </a>
                                 </List.Item>
                                 <List.Item>
+                                <a href="https://www.facebook.com/?stype=lo&jlou=Afd0emwMH5X_jFBbvX4Iog_pMkXkNSJjW2Zza0OfJvrCBrnpAx0NxiZ4l1U-BaQkgUyu75C04VgiVn0XQ73PcWL_j4YgthhrN1jyn1CF7GsjOw&smuh=30541&lh=Ac_C2g0bmyL9Xmpi" target="_blank">
                                     <Icon circular style={{ 'background-color': '#0577CB', 'color': '#fff', 'border-color': '#0577CB', 'box-shadow': 'none' }} size='large' name='facebook f' />
+                                    </a>
                                 </List.Item>
-                                <List.Item>
+                                {/* <List.Item>
+                                    <a href="#" target="_blank">
                                     <Icon circular style={{ 'background-color': '#0577CB', 'color': '#fff', 'border-color': '#0577CB', 'box-shadow': 'none' }} size='large' name='google' />
-                                </List.Item>
+                                    </a>
+                                </List.Item> */}
                             </List>
                         </Grid.Column>
                     </Grid.Row>
