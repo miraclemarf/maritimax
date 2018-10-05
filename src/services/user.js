@@ -8,7 +8,9 @@ export const userService = {
     register,
     forgotPassword,
     resetPassword,
-    getUser
+    changePassword,
+    getUser,
+    listBooking
 };
 
 const BASE_API = app_apiurl;
@@ -144,6 +146,16 @@ function resetPassword(new_password, reset_token) {
         });
 }
 
+function changePassword(old_password, new_password) {
+    var formData = new FormData();
+    formData.append('old_password', old_password);
+    formData.append('new_password', new_password);
+
+    return axios.post(`${BASE_API}/api/user/change-password`, formData, {
+        headers: authHeader()
+    });
+}
+
 function googleLogin(token) {
     const DO = 'http://maritimax.com';
     var formData = new FormData();
@@ -173,6 +185,12 @@ function googleLogin(token) {
             return user;
         });
 
+}
+
+function listBooking() {
+    return axios.get(`${BASE_API}/api/user/booking`, {
+        headers: authHeader()
+    });
 }
 
 function handleResponse(response) {

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { POST_BOOKING, BOOKING_FAIL } from '../actions';
+import { POST_BOOKING, BOOKING_FAIL, GET_BOOKING } from '../actions';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 export default function (state = {}, action) {
@@ -13,6 +13,10 @@ export default function (state = {}, action) {
         case BOOKING_FAIL:            
             return {
                 message: action.payload.error != undefined ? action.payload.message : ''
+            }
+        case GET_BOOKING:
+            return{
+                data : action.payload.data
             }
         case LOCATION_CHANGE:
             return {}

@@ -39,6 +39,17 @@ export default function authentication(state = initialState, action) {
             return {
                 error: action.error
             };
+
+        case userConstants.CHANGE_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                change: action.user
+            };
+        case userConstants.CHANGE_PASSWORD_FAILURE:
+            return {
+                ...state,
+                error: action.error
+            };
         case userConstants.LOGIN_FAILURE:
             return {
                 loggedIn: false,

@@ -14,6 +14,7 @@ export const SEARCHMORE_PRODUCTS = 'searchmore_products';
 export const GET_PRODUCT = 'get_product';
 export const GET_NEWS = 'get_news';
 export const POST_BOOKING = 'post_booking';
+export const GET_BOOKING = 'get_booking';
 export const BOOKING_FAIL = 'booking_fail';
 export const POST_REQUEST = 'post_request';
 
@@ -186,6 +187,25 @@ export function reset_password(new_password, reset_token) {
   function failure(error) { return { type: userConstants.FORGOT_PASSWORD_FAILURE, error } }
 }
 
+export function change_password(old_password, new_password) {
+  return dispatch => {
+    //dispatch(request({ username }));
+    userService.changePassword(old_password, new_password)
+      .then(
+        user => {          
+          dispatch(success(user.data));
+          //console.log(user);
+          //history.push('/');
+        },
+        error => {          
+          dispatch(failure(error.response));
+        }
+      );
+  };
+  function success(user) { return { type: userConstants.CHANGE_PASSWORD_SUCCESS, user } }
+  function failure(error) { return { type: userConstants.CHANGE_PASSWORD_FAILURE, error } }
+}
+
 export function get_user() {
   return dispatch => {
     //dispatch(request({ username }));
@@ -225,12 +245,17 @@ export function post_booking(formBody) {
     payload: request
   };
   
-  
   function success(data) { return { type: POST_BOOKING, success:data } }
   function failure(error) { return { type: BOOKING_FAIL, error } }
 
 }
-
+export function get_booking() {
+  const request = userService.listBooking();
+  return {
+    type: GET_BOOKING,
+    payload: request
+  };
+}
 export function post_request(formBody) {  
   const request = axios.post(`${BASE_API}/booking/request`, formBody).then(function (response) {    
     window.location.href = '/contact?success';

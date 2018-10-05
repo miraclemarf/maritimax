@@ -55,3 +55,27 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
     border-radius: 8px;
 }
+.table-maritim th{
+    background-color: #0577CB !important;
+    color: #fff !important;
+    border-color: #fff !important;
+    text-align: center !important;
+}
+
+.table-maritim td{
+    color: #4A4A4A !important;
+}
+.table-maritim td.pending{
+    color: #0577CB !important;
+    font-weight: 700 !important;
+}
+.table-maritim td.approved{
+    color: #24BA00 !important;
+    font-weight: 700 !important;
+
+}
+.table-maritim td.rejected{
+    color: #ED0E78 !important;
+    font-weight: 700 !important;
+
+}
